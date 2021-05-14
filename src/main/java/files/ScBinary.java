@@ -30,7 +30,7 @@ public class ScBinary {
         int intBits = new BigInteger(this.value, 2).intValue();
         return new ScFloat(Float.intBitsToFloat(intBits));
     }
-    /*
+
     public ScInt toScInt() {
         int n;
         if (this.value.charAt(0) == 1) {
@@ -38,7 +38,8 @@ public class ScBinary {
         } else {
             n = -1;
         }
-        // Terminar de escribir el pasar a bits sin el primer digito
+        String str = this.value.substring(1, this.value.length());
+        return new ScInt(n * Integer.parseInt(str, 2));
     }
-    */
+
 }

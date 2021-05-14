@@ -16,7 +16,4 @@ public class ScFloat {
         return new ScString(this.toString());
     }
 
-    public void nada(){
-        System.out.println("hola");
-    }
 }
