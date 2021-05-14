@@ -1,2 +1,4 @@
-package files;public class ScNumero {
+package files;
+
+public abstract class ScNumero {
 }

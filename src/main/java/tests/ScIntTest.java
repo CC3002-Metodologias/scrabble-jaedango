@@ -1,8 +1,14 @@
 package tests;
 
 import files.ScInt;
-import files.ScNumero;
+import org.junit.Before;
 
-public class ScNumeroTest {
+public class ScIntTest {
     protected ScInt int1;
+
+    @Before
+    public void setUp(){
+        int1 = new ScInt(1);
+    }
+
 }

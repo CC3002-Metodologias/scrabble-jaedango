@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * <Complete here with the details of the implemented application>
  *
  * @author Ignacio Slater Muñoz.
- * @author <Your name>
+ * @author <jaedango>
  */
 public class Scrabble extends Application {
 
@@ -24,7 +24,7 @@ public class Scrabble extends Application {
   public void start(Stage primaryStage) {
     primaryStage.setTitle("Final reality");
 
-    Label label = new Label("This will be an app sometime");
+    Label label = new Label("This will be an app sometime?");
     label.setAlignment(Pos.CENTER);
 
     // This sets the size of the Scene to be 400px wide, 200px high
