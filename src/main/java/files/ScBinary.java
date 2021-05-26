@@ -1,6 +1,7 @@
 package files;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * @author jaedango
@@ -9,7 +10,8 @@ import java.math.BigInteger;
  */
 
 public class ScBinary {
-    String value;
+    private String value;
+
     public ScBinary(String bin) {
         if (bin.matches("^[01]+$")){
             this.value = bin;
@@ -24,12 +26,26 @@ public class ScBinary {
     }
 
     @Override
-    public String toString(){
-        return this.value;
+    public String toString() {
+        return "ScBinary {" + this.value + "}";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ScBinary.class, this.value);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ScBinary) {
+            var other = (ScBinary) obj;
+            return value.equals(other.value);
+        }
+        return false;
     }
 
     public ScString toScString() {
-        return new ScString(this.toString());
+        return new ScString(this.value);
     }
 
     public ScFloat toScFloat() {

@@ -3,6 +3,7 @@ package files;
 import files.ScBoolean;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,8 +14,8 @@ import org.junit.jupiter.api.Test;
 public class ScBooleanTest {
     protected ScBoolean bool1;
     protected ScBoolean bool2;
-    protected boolean t = true;
-    protected boolean f = false;
+    protected final boolean t = true;
+    protected final boolean f = false;
 
     @BeforeEach
     void setUp(){

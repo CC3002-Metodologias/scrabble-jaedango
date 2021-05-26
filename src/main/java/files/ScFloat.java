@@ -1,12 +1,14 @@
 package files;
 
+import java.util.Objects;
+
 /**
  * @author jaedango
  * ScFloat : float para Scrabble
  */
 
 public class ScFloat {
-    float value;
+    private float value;
 
     public ScFloat(float v) {
         this.value = v;
@@ -14,7 +16,23 @@ public class ScFloat {
 
     @Override
     public String toString() {
-        return String.valueOf(this.value);
+        return "ScFloat {" + String.valueOf(this.value) + "}";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ScFloat.class, this.value);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ScFloat) {
+            var other = (ScFloat) obj;
+            if (Float.compare(this.value, other.value) == 0) {
+                return true;
+            } return false;
+        }
+        return false;
     }
 
     public ScString toScString() {
