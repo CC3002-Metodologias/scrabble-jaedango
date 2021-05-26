@@ -3,4 +3,5 @@ module scrabble.main {
   requires javafx.controls;
   requires org.jetbrains.annotations;
     requires junit;
+    requires org.junit.jupiter.api;
 }

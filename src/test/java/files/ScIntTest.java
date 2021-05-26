@@ -1,7 +1,12 @@
-package tests;
+package files;
 
 import files.ScInt;
 import org.junit.Before;
+
+/**
+ * @author jaedango
+ * ScIntTest : Test para ScInt
+ */
 
 public class ScIntTest {
     protected ScInt int1;

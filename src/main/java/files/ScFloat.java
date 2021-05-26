@@ -1,5 +1,10 @@
 package files;
 
+/**
+ * @author jaedango
+ * ScFloat : float para Scrabble
+ */
+
 public class ScFloat {
     float value;
 

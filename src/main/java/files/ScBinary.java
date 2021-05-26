@@ -2,6 +2,12 @@ package files;
 
 import java.math.BigInteger;
 
+/**
+ * @author jaedango
+ * ScBinary : binario para Scrabble
+ * acepta solamente Strings que contengan 1's y 0's, ademas de un "." para los tipo float
+ */
+
 public class ScBinary {
     String value;
     public ScBinary(String bin) {

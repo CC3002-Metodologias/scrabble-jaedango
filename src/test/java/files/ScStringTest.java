@@ -1,7 +1,12 @@
-package tests;
+package files;
 
 import files.ScString;
 import org.junit.Before;
+
+/**
+ * @author jaedango
+ * ScStringTest : Test para ScString
+ */
 
 public class ScStringTest {
     protected ScString str1;

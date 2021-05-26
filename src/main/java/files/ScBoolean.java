@@ -1,7 +1,9 @@
 package files;
 
 /**
- * ScBoolean
+ * @author jaedango
+ * ScBoolean : Booleano para Scrabble
+ * acepta valores true y false solamente
  */
 public class ScBoolean {
     boolean value;

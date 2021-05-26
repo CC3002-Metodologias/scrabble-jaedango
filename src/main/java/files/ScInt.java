@@ -1,5 +1,10 @@
 package files;
 
+/**
+ * @author jaedango
+ * ScInt : Enteros para Scrabble
+ */
+
 public class ScInt {
     int val;
 
