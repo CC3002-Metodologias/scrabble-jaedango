@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/jaedango/U-2021-1/Metodologias/proyect/scrabble-jaedango/src/main/java/files</OriginalElement>
+  <nodes>
+    <node x="893.0" y="0.0">files.BinaryToInt</node>
+    <node x="0.0" y="0.0">files.ScInt</node>
+    <node x="499.0" y="0.0">files.ScBoolean</node>
+    <node x="0.0" y="256.0">files.ScFloat</node>
+    <node x="254.0" y="242.0">files.ScString</node>
+    <node x="254.0" y="0.0">files.ScBinary</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="414.5" y="251.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
