@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author jaedango
- * ScStringTest : Test para ScString
+ * ScStringTest : Test for ScString
  */
 
 public class ScStringTest {

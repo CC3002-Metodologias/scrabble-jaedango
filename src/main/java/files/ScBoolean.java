@@ -4,11 +4,11 @@ import java.util.Objects;
 
 /**
  * @author jaedango
- * ScBoolean : Booleano para Scrabble
- * acepta valores true y false solamente
+ * ScBoolean : Boolean for Scrabble
+ * accepts only true y false values
  */
 public class ScBoolean {
-    private boolean value;
+    protected boolean value;
 
     public ScBoolean(boolean val) {
         this.value = val;
@@ -16,7 +16,7 @@ public class ScBoolean {
 
     @Override
     public String toString() {
-        return "ScBoolean {" + String.valueOf(this.value) + "}";
+        return String.valueOf(this.value);
     }
 
     @Override
@@ -40,4 +40,43 @@ public class ScBoolean {
         return new ScString(String.valueOf(this.value));
     }
 
+    public ScBoolean not() {
+        return new ScBoolean(!this.value);
+    }
+
+    public ScBoolean and(ScBoolean bool) {
+        return new ScBoolean(this.value && bool.value);
+    }
+
+    public ScBoolean or(ScBoolean bool) {
+        return new ScBoolean(this.value || bool.value);
+    }
+
+    public ScBinary and(ScBinary bin) {
+        String copy = bin.value;
+        StringBuilder str = new StringBuilder();
+        for (int i=0;i<copy.length();i++) {
+            char c = copy.charAt(i);
+            if (c == '0' || !this.value) {
+                str.append("0");
+            } else {
+                str.append("1");
+            }
+        }
+        return new ScBinary(str.toString());
+    }
+
+    public ScBinary or(ScBinary bin) {
+        String copy = bin.value;
+        StringBuilder str = new StringBuilder();
+        for (int i=0;i<copy.length();i++) {
+            char c = copy.charAt(i);
+            if (c == '0' && !this.value) {
+                str.append("0");
+            } else {
+                str.append("1");
+            }
+        }
+        return new ScBinary(str.toString());
+    }
 }

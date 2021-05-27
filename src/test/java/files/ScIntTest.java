@@ -2,6 +2,7 @@ package files;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author jaedango
- * ScIntTest : Test para ScInt
+ * ScIntTest : Test for ScInt
  */
 
 public class ScIntTest {
@@ -131,4 +132,5 @@ public class ScIntTest {
             assertNotEquals(expectedScBinary3, bin1);
         }
     }
+
 }

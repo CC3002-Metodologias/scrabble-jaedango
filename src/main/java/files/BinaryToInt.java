@@ -1,8 +1,7 @@
 package files;
 
 /**
- * Codigo tomado principalmente desde las instrucciones del proyecto
- * Clase que ayuda a transformar desde int a binario y de binario a int
+ * Class to transform from integer to a binary String and from a binary String to int
  */
 
 public class BinaryToInt {
@@ -34,6 +33,10 @@ public class BinaryToInt {
     private static int binToInt(char bit) {
         return bit == '0' ? 0 : 1;
     }
+
+    /**
+     * Transform integer number to Binary String
+     */
 
     public static String intToBin(int n) {
         String bin = "";

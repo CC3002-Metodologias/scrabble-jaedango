@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author jaedango
- * ScBinaryTest : Test para ScBinary
+ * ScBinaryTest : Test For ScBinary
  */
 
 // Hubo un error que desconozco el motivo pero no dejo que el archivo se llamara ScBinaryTest

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * @author jaedango
- * ScBooleanTest : Test de ScBoolean
+ * ScBooleanTest : Test for ScBoolean
  */
 
 public class ScBooleanTest {

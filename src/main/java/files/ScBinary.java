@@ -3,17 +3,18 @@ package files;
 import java.math.BigInteger;
 import java.util.Objects;
 
+import static files.BinaryToInt.intToBin;
 import static files.BinaryToInt.toInt;
 
 /**
  * @author jaedango
- * ScBinary : binario para Scrabble
- * acepta solamente Strings que contengan 1's y 0's
- * notese que dada la forma que esta construido 0001 es distinto a 001
+ * ScBinary : binary for Scrabble
+ * accepts only Strings that contains 1's & 0's
+ * note that 00001 and 0001 are different
  */
 
 public class ScBinary {
-    private String value;
+    protected String value;
 
     public ScBinary(String bin) {
         if (bin.matches("^[01]+$")) {
@@ -31,7 +32,7 @@ public class ScBinary {
 
     @Override
     public String toString() {
-        return "ScBinary {" + this.value + "}";
+        return this.value;
     }
 
     @Override
@@ -60,6 +61,74 @@ public class ScBinary {
     public ScInt toScInt() {
         int n = toInt(this.value);
         return new ScInt(n);
+    }
+
+    public ScBinary and(ScBoolean bool) {
+        String copy = this.value;
+        StringBuilder str = new StringBuilder();
+        for (int i=0;i<copy.length();i++) {
+            char c = copy.charAt(i);
+            if (c=='0' || !bool.value) {
+                str.append('0');
+            } else {
+                str.append('1');
+            }
+        }
+        return new ScBinary(str.toString());
+    }
+
+    public ScBinary or(ScBoolean bool) {
+        String copy = this.value;
+        StringBuilder str = new StringBuilder();
+        for (int i=0;i<copy.length();i++) {
+            char c = copy.charAt(i);
+            if (c=='0' && !bool.value) {
+                str.append('0');
+            } else {
+                str.append('1');
+            }
+        }
+        return new ScBinary(str.toString());
+    }
+
+    public ScBinary add(ScInt n) {
+        int val = toInt(this.value) + n.value;
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary sub(ScInt n) {
+        int val = toInt(this.value) - n.value;
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary mul(ScInt n) {
+        int val = toInt(this.value) * n.value;
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary div(ScInt n) {
+        int val = toInt(this.value) / n.value;
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary add(ScBinary bin) {
+        int val = toInt(this.value) + toInt(bin.value);
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary sub(ScBinary bin) {
+        int val = toInt(this.value) - toInt(bin.value);
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary mul(ScBinary bin) {
+        int val = toInt(this.value) * toInt(bin.value);
+        return new ScBinary(intToBin(val));
+    }
+
+    public ScBinary div(ScBinary bin) {
+        int val = toInt(this.value) / toInt(bin.value);
+        return new ScBinary(intToBin(val));
     }
 
 }

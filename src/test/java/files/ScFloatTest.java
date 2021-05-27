@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author jaedango
- * ScFloatTest : Test de ScFloat
+ * ScFloatTest : Test for ScFloat
  */
 
 public class ScFloatTest {
