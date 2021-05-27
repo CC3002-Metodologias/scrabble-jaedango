@@ -47,6 +47,9 @@ public class BinaryScTest {
         assertEquals(ExpectedScBinary1, bin1);
         assertEquals(ExpectedScBinary2, bin2);
         assertEquals(ExpectedScBinary3, bin3);
+        assertEquals(ExpectedScBinary1.toString(), bin1.toString());
+        assertEquals(ExpectedScBinary2.toString(), bin2.toString());
+        assertEquals(ExpectedScBinary3.toString(), bin3.toString());
         assertEquals(ExpectedScBinary1.hashCode(), bin1.hashCode(), "Hashes don't match");
         assertEquals(ExpectedScBinary2.hashCode(), bin2.hashCode(), "Hashes don't match");
         assertEquals(ExpectedScBinary3.hashCode(), bin3.hashCode(), "Hashes don't match");

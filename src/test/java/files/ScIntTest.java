@@ -40,6 +40,9 @@ public class ScIntTest {
         assertEquals(expectedScInt1, int1);
         assertEquals(expectedScInt2, int2);
         assertEquals(expectedScInt3, int3);
+        assertEquals(expectedScInt1.toString(), int1.toString());
+        assertEquals(expectedScInt2.toString(), int2.toString());
+        assertEquals(expectedScInt3.toString(), int3.toString());
         assertEquals(expectedScInt1.hashCode(), int1.hashCode(), "Hashes don't match.");
         assertEquals(expectedScInt2.hashCode(), int2.hashCode(), "Hashes don't match.");
         assertEquals(expectedScInt3.hashCode(), int3.hashCode(), "Hashes don't match.");

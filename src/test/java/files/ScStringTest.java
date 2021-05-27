@@ -46,6 +46,8 @@ public class ScStringTest {
         var ExpectedScString2 = new ScString(s2);
         assertEquals(ExpectedScString1, str1);
         assertEquals(ExpectedScString2, str2);
+        assertEquals(ExpectedScString1.toString(), str1.toString());
+        assertEquals(ExpectedScString2.toString(), str2.toString());
         assertEquals(ExpectedScString1.hashCode(), str1.hashCode(), "Hashes don't match.");
         assertEquals(ExpectedScString2.hashCode(), str2.hashCode(), "Hashes don't match.");
         if (!s1.equals(s2)) {

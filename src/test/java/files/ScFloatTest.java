@@ -43,6 +43,9 @@ public class ScFloatTest {
         assertEquals(expectedScFloat1, float1);
         assertEquals(expectedScFloat2, float2);
         assertEquals(expectedScFloat3, float3);
+        assertEquals(expectedScFloat1.toString(), float1.toString());
+        assertEquals(expectedScFloat2.toString(), float2.toString());
+        assertEquals(expectedScFloat3.toString(), float3.toString());
         assertEquals(expectedScFloat1.hashCode(), float1.hashCode(), "Hashes don't match");
         assertEquals(expectedScFloat2.hashCode(), float2.hashCode(), "Hashes don't match");
         assertEquals(expectedScFloat3.hashCode(), float3.hashCode(), "Hashes don't match");

@@ -31,7 +31,8 @@ public class ScBooleanTest {
         assertEquals(expectedScBool1.hashCode(), bool1.hashCode(), "Hashes don't match");
         assertEquals(expectedScBool2, bool2);
         assertEquals(expectedScBool2.hashCode(), bool2.hashCode(), "Hashes don't match");
-
+        assertEquals(expectedScBool1.toString(), bool1.toString());
+        assertEquals(expectedScBool2.toString(), bool2.toString());
         assertNotEquals(expectedScBool2, bool1);
         assertNotEquals(expectedScBool1, bool2);
     }
