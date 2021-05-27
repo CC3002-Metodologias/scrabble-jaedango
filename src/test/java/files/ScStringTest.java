@@ -40,7 +40,7 @@ public class ScStringTest {
         str2 = new ScString(s2);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(1000)
     void constructorTest() {
         var ExpectedScString1 = new ScString(s1);
         var ExpectedScString2 = new ScString(s2);
@@ -48,9 +48,10 @@ public class ScStringTest {
         assertEquals(ExpectedScString2, str2);
         assertEquals(ExpectedScString1.hashCode(), str1.hashCode(), "Hashes don't match.");
         assertEquals(ExpectedScString2.hashCode(), str2.hashCode(), "Hashes don't match.");
-
-        assertNotEquals(ExpectedScString1, str2);
-        assertNotEquals(ExpectedScString2, str1);
+        if (!s1.equals(s2)) {
+            assertNotEquals(ExpectedScString1, str2);
+            assertNotEquals(ExpectedScString2, str1);
+        }
 
     }
 

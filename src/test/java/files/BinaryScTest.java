@@ -39,7 +39,7 @@ public class BinaryScTest {
         bin3 = new ScBinary(s3);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(200)
     void constructorTest() {
         var ExpectedScBinary1 = new ScBinary(s1);
         var ExpectedScBinary2 = new ScBinary(s2);
@@ -50,13 +50,18 @@ public class BinaryScTest {
         assertEquals(ExpectedScBinary1.hashCode(), bin1.hashCode(), "Hashes don't match");
         assertEquals(ExpectedScBinary2.hashCode(), bin2.hashCode(), "Hashes don't match");
         assertEquals(ExpectedScBinary3.hashCode(), bin3.hashCode(), "Hashes don't match");
-
-        assertNotEquals(bin1, bin2);
-        assertNotEquals(bin1, bin3);
-        assertNotEquals(bin3, bin2);
+        if (p1 != p2) {
+            assertNotEquals(bin1, bin2);
+        }
+        if (p2 != p3) {
+            assertNotEquals(bin2, bin3);
+        }
+        if (p3 != p1) {
+            assertNotEquals(bin3, bin1);
+        }
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(200)
     void transformationToScString() {
         var expectedScString1 = new ScString(s1);
         var expectedScString2 = new ScString(s2);
@@ -70,13 +75,19 @@ public class BinaryScTest {
         assertEquals(expectedScString1.hashCode(), ScStr1.hashCode(), "Hashes don't match");
         assertEquals(expectedScString2.hashCode(), ScStr2.hashCode(), "Hashes don't match");
         assertEquals(expectedScString3.hashCode(), ScStr3.hashCode(), "Hashes don't match");
-        assertNotEquals(expectedScString1, ScStr2);
-        assertNotEquals(expectedScString2, ScStr3);
-        assertNotEquals(expectedScString3, ScStr1);
+        if (p1 != p2) {
+            assertNotEquals(expectedScString1, ScStr2);
+        }
+        if (p2 != p3) {
+            assertNotEquals(expectedScString2, ScStr3);
+        }
+        if (p3 != p1){
+            assertNotEquals(expectedScString3, ScStr1);
+        }
     }
 
     // Agregar transformaciones a ScFloat y ScInt
-    @RepeatedTest(20)
+    @RepeatedTest(200)
     void transformationScInt() {
         ScInt expectedScInt1 = new ScInt(p1);
         ScInt expectedScInt2 = new ScInt(p2);
@@ -90,12 +101,18 @@ public class BinaryScTest {
         assertEquals(expectedScInt1.hashCode(), int1.hashCode(), "Hashes don't match");
         assertEquals(expectedScInt2.hashCode(), int2.hashCode(), "Hashes don't match");
         assertEquals(expectedScInt3.hashCode(), int3.hashCode(), "Hashes don't match");
-        assertNotEquals(expectedScInt1, int2);
-        assertNotEquals(expectedScInt2, int3);
-        assertNotEquals(expectedScInt3, int1);
+        if (p1 != p2) {
+            assertNotEquals(expectedScInt1, int2);
+        }
+        if (p2 != p3) {
+            assertNotEquals(expectedScInt2, int3);
+        }
+        if (p3 != p1) {
+            assertNotEquals(expectedScInt3, int1);
+        }
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(200)
     void transformationScFloat() {
         ScFloat expectedScFloat1 = new ScFloat((float) p1);
         ScFloat expectedScFloat2 = new ScFloat((float) p2);
@@ -109,13 +126,15 @@ public class BinaryScTest {
         assertEquals(expectedScFloat1.hashCode(), float1.hashCode(), "Hashes don't match");
         assertEquals(expectedScFloat2.hashCode(), float2.hashCode(), "Hashes don't match");
         assertEquals(expectedScFloat3.hashCode(), float3.hashCode(), "Hashes don't match");
-        assertNotEquals(expectedScFloat1, float2);
-        assertNotEquals(expectedScFloat2, float3);
-        assertNotEquals(expectedScFloat3, float1);
+        if (p1 != p2) {
+            assertNotEquals(expectedScFloat1, float2);
+        }
+        if (p2 != p3) {
+            assertNotEquals(expectedScFloat2, float3);
+        }
+        if (p3 != p1) {
+            assertNotEquals(expectedScFloat3, float1);
+        }
     }
-
-
-
-
 }
 

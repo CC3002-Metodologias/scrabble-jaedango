@@ -35,7 +35,7 @@ public class ScFloatTest {
         float3 = new ScFloat(f3);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(200)
     void constructTest() {
         var expectedScFloat1 = new ScFloat(f1);
         var expectedScFloat2 = new ScFloat(f2);
@@ -46,13 +46,18 @@ public class ScFloatTest {
         assertEquals(expectedScFloat1.hashCode(), float1.hashCode(), "Hashes don't match");
         assertEquals(expectedScFloat2.hashCode(), float2.hashCode(), "Hashes don't match");
         assertEquals(expectedScFloat3.hashCode(), float3.hashCode(), "Hashes don't match");
-
-        assertNotEquals(expectedScFloat1, float2);
-        assertNotEquals(expectedScFloat2, float3);
-        assertNotEquals(expectedScFloat3, float1);
+        if (f1 != f2) {
+            assertNotEquals(expectedScFloat1, float2);
+        }
+        if (f2 != f3) {
+            assertNotEquals(expectedScFloat2, float3);
+        }
+        if (f3 != f1) {
+            assertNotEquals(expectedScFloat3, float1);
+        }
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(200)
     void transformationScString() {
         var expectedScString1 = new ScString(String.valueOf(f1));
         var expectedScString2 = new ScString(String.valueOf(f2));
@@ -66,9 +71,14 @@ public class ScFloatTest {
         assertEquals(expectedScString1.hashCode(), scStr1.hashCode(), "Hashes don't match");
         assertEquals(expectedScString2.hashCode(), scStr2.hashCode(), "Hashes don't match");
         assertEquals(expectedScString3.hashCode(), scStr3.hashCode(), "Hashes don't match");
-        assertNotEquals(expectedScString1, scStr2);
-        assertNotEquals(expectedScString2, scStr3);
-        assertNotEquals(expectedScString3, scStr1);
+        if (f1 != f2) {
+            assertNotEquals(expectedScString1, scStr2);
+        }
+        if (f2 != f3) {
+            assertNotEquals(expectedScString2, scStr3);
+        }
+        if (f3 != f1) {
+            assertNotEquals(expectedScString3, scStr1);
+        }
     }
-
 }
