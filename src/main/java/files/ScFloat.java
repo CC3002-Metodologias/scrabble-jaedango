@@ -36,7 +36,7 @@ public class ScFloat {
     }
 
     public ScString toScString() {
-        return new ScString(this.toString());
+        return new ScString(String.valueOf(this.value));
     }
 
 }

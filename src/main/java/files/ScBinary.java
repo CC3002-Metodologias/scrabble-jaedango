@@ -3,25 +3,29 @@ package files;
 import java.math.BigInteger;
 import java.util.Objects;
 
+import static files.BinaryToInt.toInt;
+
 /**
  * @author jaedango
  * ScBinary : binario para Scrabble
- * acepta solamente Strings que contengan 1's y 0's, ademas de un "." para los tipo float
+ * acepta solamente Strings que contengan 1's y 0's
+ * notese que dada la forma que esta construido 0001 es distinto a 001
  */
 
 public class ScBinary {
     private String value;
 
     public ScBinary(String bin) {
-        if (bin.matches("^[01]+$")){
+        if (bin.matches("^[01]+$")) {
             this.value = bin;
         } else {
-            if (bin.matches("^[0|1]+.[0|1]+$")){
+            /*if (bin.matches("^[0|1]+.[0|1]+$")){
                 this.value = bin;
             }
             else {
                 this.value = "Error";
-            }
+            }*/
+            this.value = "0";
         }
     }
 
@@ -49,19 +53,13 @@ public class ScBinary {
     }
 
     public ScFloat toScFloat() {
-        int intBits = new BigInteger(this.value, 2).intValue();
-        return new ScFloat(Float.intBitsToFloat(intBits));
+        float f = (float) toInt(this.value);
+        return new ScFloat(f);
     }
 
     public ScInt toScInt() {
-        int n;
-        if (this.value.charAt(0) == 1) {
-            n = 1;
-        } else {
-            n = -1;
-        }
-        String str = this.value.substring(1, this.value.length());
-        return new ScInt(n * Integer.parseInt(str, 2));
+        int n = toInt(this.value);
+        return new ScInt(n);
     }
 
 }

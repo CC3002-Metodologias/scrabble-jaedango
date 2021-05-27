@@ -36,5 +36,19 @@ public class ScBooleanTest {
         assertNotEquals(expectedScBool1, bool2);
     }
 
+    @Test
+    void transformationScString() {
+        var expectedScStr1 = new ScString("true");
+        var expectedScStr2 = new ScString("false");
+        ScString ScStr1 = bool1.toScString();
+        ScString ScStr2 = bool2.toScString();
+        assertEquals(expectedScStr1, ScStr1);
+        assertEquals(expectedScStr2, ScStr2);
+        assertEquals(expectedScStr1.hashCode(), ScStr1.hashCode(), "Hashes don't match");
+        assertEquals(expectedScStr2.hashCode(), ScStr2.hashCode(), "Hashes don't match");
+        assertNotEquals(expectedScStr1, ScStr2);
+        assertNotEquals(expectedScStr2, ScStr1);
+    }
+
 
 }
