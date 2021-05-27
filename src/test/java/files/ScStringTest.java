@@ -1,13 +1,12 @@
 package files;
 
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
+import static files.BinaryToInt.intToBin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -40,7 +39,7 @@ public class ScStringTest {
         str2 = new ScString(s2);
     }
 
-    @RepeatedTest(1000)
+    @RepeatedTest(100)
     void constructorTest() {
         var ExpectedScString1 = new ScString(s1);
         var ExpectedScString2 = new ScString(s2);
@@ -54,7 +53,122 @@ public class ScStringTest {
             assertNotEquals(ExpectedScString1, str2);
             assertNotEquals(ExpectedScString2, str1);
         }
-
     }
 
+
+    @RepeatedTest(20)
+    void addScStringTest() {
+        String string1 = s1 + s2;
+        String string2 = s2 + s1;
+        String string3 = s1 + s1;
+        String string4 = s2 + s2;
+        ScString expectedSum1 = new ScString(string1);
+        ScString expectedSum2 = new ScString(string2);
+        ScString expectedSum3 = new ScString(string3);
+        ScString expectedSum4 = new ScString(string4);
+        ScString actualStr1 = str1.add(str2);
+        ScString actualStr2 = str2.add(str1);
+        ScString actualStr3 = str1.add(str1);
+        ScString actualStr4 = str2.add(str2);
+        assertEquals(expectedSum1, actualStr1);
+        assertEquals(expectedSum2, actualStr2);
+        assertEquals(expectedSum3, actualStr3);
+        assertEquals(expectedSum4, actualStr4);
+    }
+
+    @RepeatedTest(20)
+    void addScBoolTest() {
+        String string1 = s1 + true;
+        String string2 = s1 + false;
+        String string3 = s2 + true;
+        String string4 = s2 + false;
+        ScBoolean b1 = new ScBoolean(true);
+        ScBoolean b2 = new ScBoolean(false);
+        ScString expectedSum1 = new ScString(string1);
+        ScString expectedSum2 = new ScString(string2);
+        ScString expectedSum3 = new ScString(string3);
+        ScString expectedSum4 = new ScString(string4);
+        ScString actualStr1 = str1.add(b1);
+        ScString actualStr2 = str1.add(b2);
+        ScString actualStr3 = str2.add(b1);
+        ScString actualStr4 = str2.add(b2);
+        assertEquals(expectedSum1, actualStr1);
+        assertEquals(expectedSum2, actualStr2);
+        assertEquals(expectedSum3, actualStr3);
+        assertEquals(expectedSum4, actualStr4);
+    }
+
+    @RepeatedTest(20)
+    void addScFloatTest() {
+        float f1 = r1.nextFloat();
+        float f2 = r2.nextFloat();
+        ScFloat ScF1 = new ScFloat(f1);
+        ScFloat ScF2 = new ScFloat(f2);
+        String string1 = s1 + f1;
+        String string2 = s1 + f2;
+        String string3 = s2 + f1;
+        String string4 = s2 + f2;
+        ScString expectedSum1 = new ScString(string1);
+        ScString expectedSum2 = new ScString(string2);
+        ScString expectedSum3 = new ScString(string3);
+        ScString expectedSum4 = new ScString(string4);
+        ScString actualStr1 = str1.add(ScF1);
+        ScString actualStr2 = str1.add(ScF2);
+        ScString actualStr3 = str2.add(ScF1);
+        ScString actualStr4 = str2.add(ScF2);
+        assertEquals(expectedSum1, actualStr1);
+        assertEquals(expectedSum2, actualStr2);
+        assertEquals(expectedSum3, actualStr3);
+        assertEquals(expectedSum4, actualStr4);
+    }
+
+    @RepeatedTest(20)
+    void addScIntTest() {
+        int n1 = r1.nextInt();
+        int n2 = r2.nextInt();
+        ScInt ScInt1 = new ScInt(n1);
+        ScInt ScInt2 = new ScInt(n2);
+        String string1 = s1 + n1;
+        String string2 = s1 + n2;
+        String string3 = s2 + n1;
+        String string4 = s2 + n2;
+        ScString expectedSum1 = new ScString(string1);
+        ScString expectedSum2 = new ScString(string2);
+        ScString expectedSum3 = new ScString(string3);
+        ScString expectedSum4 = new ScString(string4);
+        ScString actualStr1 = str1.add(ScInt1);
+        ScString actualStr2 = str1.add(ScInt2);
+        ScString actualStr3 = str2.add(ScInt1);
+        ScString actualStr4 = str2.add(ScInt2);
+        assertEquals(expectedSum1, actualStr1);
+        assertEquals(expectedSum2, actualStr2);
+        assertEquals(expectedSum3, actualStr3);
+        assertEquals(expectedSum4, actualStr4);
+    }
+
+    @RepeatedTest(20)
+    void addScBinaryTest() {
+        int n1 = r1.nextInt();
+        int n2 = r2.nextInt();
+        String bin1 = intToBin(n1);
+        String bin2 = intToBin(n2);
+        ScBinary ScBin1 = new ScBinary(bin1);
+        ScBinary ScBin2 = new ScBinary(bin2);
+        String string1 = s1 + bin1;
+        String string2 = s1 + bin2;
+        String string3 = s2 + bin1;
+        String string4 = s2 + bin2;
+        ScString expectedSum1 = new ScString(string1);
+        ScString expectedSum2 = new ScString(string2);
+        ScString expectedSum3 = new ScString(string3);
+        ScString expectedSum4 = new ScString(string4);
+        ScString actualStr1 = str1.add(ScBin1);
+        ScString actualStr2 = str1.add(ScBin2);
+        ScString actualStr3 = str2.add(ScBin1);
+        ScString actualStr4 = str2.add(ScBin2);
+        assertEquals(expectedSum1, actualStr1);
+        assertEquals(expectedSum2, actualStr2);
+        assertEquals(expectedSum3, actualStr3);
+        assertEquals(expectedSum4, actualStr4);
+    }
 }

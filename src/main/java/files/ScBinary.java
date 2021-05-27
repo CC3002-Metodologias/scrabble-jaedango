@@ -20,16 +20,14 @@ public class ScBinary {
         if (bin.matches("^[01]+$")) {
             this.value = bin;
         } else {
-            /*if (bin.matches("^[0|1]+.[0|1]+$")){
-                this.value = bin;
-            }
-            else {
-                this.value = "Error";
-            }*/
             this.value = "0";
         }
     }
 
+    /**
+     * ScBinary getter method
+     * @return String with ScBinary value
+     */
     @Override
     public String toString() {
         return this.value;
@@ -49,6 +47,9 @@ public class ScBinary {
         return false;
     }
 
+    /**
+     * Methods to transform ScBinary into other classes
+     */
     public ScString toScString() {
         return new ScString(this.value);
     }
@@ -62,6 +63,10 @@ public class ScBinary {
         int n = toInt(this.value);
         return new ScInt(n);
     }
+
+    /**
+     * boolean 'and' operator between boolean and binary
+     */
 
     public ScBinary and(ScBoolean bool) {
         String copy = this.value;
@@ -77,6 +82,9 @@ public class ScBinary {
         return new ScBinary(str.toString());
     }
 
+    /**
+     * boolean 'or' operator netween boolean and binary
+     */
     public ScBinary or(ScBoolean bool) {
         String copy = this.value;
         StringBuilder str = new StringBuilder();
@@ -91,6 +99,10 @@ public class ScBinary {
         return new ScBinary(str.toString());
     }
 
+    /**
+     * Binary operations with ints
+     * @return ScBinary
+     */
     public ScBinary add(ScInt n) {
         int val = toInt(this.value) + n.value;
         return new ScBinary(intToBin(val));
@@ -111,6 +123,10 @@ public class ScBinary {
         return new ScBinary(intToBin(val));
     }
 
+    /**
+     * Binary operations with other Binary
+     * @return
+     */
     public ScBinary add(ScBinary bin) {
         int val = toInt(this.value) + toInt(bin.value);
         return new ScBinary(intToBin(val));

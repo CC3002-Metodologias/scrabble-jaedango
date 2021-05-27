@@ -14,6 +14,10 @@ public class ScBoolean {
         this.value = val;
     }
 
+    /**
+     * ScBoolean getter method
+     * @return String with ScBoolean value
+     */
     @Override
     public String toString() {
         return String.valueOf(this.value);
@@ -36,14 +40,25 @@ public class ScBoolean {
         return false;
     }
 
+    /**
+     * Method to transform ScBoolean into other classes.
+     * @return
+     */
     public ScString toScString() {
         return new ScString(String.valueOf(this.value));
     }
 
+    /**
+     * Boolean 'not' Method
+     * @return not value
+     */
     public ScBoolean not() {
         return new ScBoolean(!this.value);
     }
 
+    /**
+     * Booleans 'and' and 'or' methods with other booleans
+     */
     public ScBoolean and(ScBoolean bool) {
         return new ScBoolean(this.value && bool.value);
     }
@@ -52,6 +67,9 @@ public class ScBoolean {
         return new ScBoolean(this.value || bool.value);
     }
 
+    /**
+     * Boolean 'and' and 'or' method with binary
+     */
     public ScBinary and(ScBinary bin) {
         String copy = bin.value;
         StringBuilder str = new StringBuilder();

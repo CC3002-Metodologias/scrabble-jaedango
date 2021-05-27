@@ -17,6 +17,10 @@ public class ScInt {
         this.value = n;
     }
 
+    /**
+     * ScInt getter Method
+     * @return String with ScInt value
+     */
     @Override
     public String toString() {
         return String.valueOf(this.value);
@@ -39,6 +43,9 @@ public class ScInt {
         return false;
     }
 
+    /**
+     * Method to transform ScInt into other classes
+     */
     public ScString toScString() {
         return new ScString(String.valueOf(this.value));
     }
@@ -51,6 +58,10 @@ public class ScInt {
         return new ScBinary(intToBin(this.value));
     }
 
+    /**
+     * Methods '+', '-', '*', '/' to operate with ScFloat
+     * @return ScFloat
+     */
     public ScFloat add(ScFloat fl) {
         return new ScFloat((float) this.value + fl.value);
     }
@@ -67,6 +78,10 @@ public class ScInt {
         return new ScFloat((float) this.value / fl.value);
     }
 
+    /**
+     * Methods '+', '-', '*', '/' to operate with other ScInt
+     * @return ScInt
+     */
     public ScInt add(ScInt n) {
         return new ScInt(this.value + n.value);
     }
@@ -83,6 +98,10 @@ public class ScInt {
         return new ScInt(this.value / n.value);
     }
 
+    /**
+     * Methods '+', '-', '*', '/' to operate with ScBinary
+     * @return ScInt
+     */
     public ScInt add(ScBinary bin) {
         int n = toInt(bin.value);
         return new ScInt(this.value + n);

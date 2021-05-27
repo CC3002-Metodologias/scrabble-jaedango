@@ -14,6 +14,10 @@ public class ScString {
         this.value = str;
     }
 
+    /**
+     * ScString getter method
+     * @return String with ScString value
+     */
     @Override
     public String toString() {
         return "ScString { " + this.value + "}";
@@ -33,22 +37,42 @@ public class ScString {
         return false;
     }
 
+    /**
+     * Method to concatenate ScString with other ScString
+     * @return ScString
+     */
     public ScString add(ScString str) {
         return new ScString(this.value + str.value);
     }
 
+    /**
+     * Method to concatenate ScString with ScBoolean
+     * @return ScString
+     */
     public ScString add(ScBoolean bool) {
         return new ScString(this.value + bool.toString());
     }
 
+    /**
+     * Method to concatenate ScString with ScFloat
+     * @return ScString
+     */
     public ScString add(ScFloat fl) {
         return new ScString(this.value + fl.toString());
     }
 
+    /**
+     * Method to concatenate ScString with ScInt
+     * @return ScString
+     */
     public ScString add(ScInt n) {
         return new ScString(this.value + n.toString());
     }
 
+    /**
+     * Method to concatenate ScString with ScBinary
+     * @return ScString
+     */
     public ScString add(ScBinary bin) {
         return new ScString(this.value + bin.toString());
     }

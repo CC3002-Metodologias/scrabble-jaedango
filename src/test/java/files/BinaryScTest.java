@@ -2,12 +2,10 @@ package files;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 import static files.BinaryToInt.intToBin;
-import static files.BinaryToInt.toInt;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -139,5 +137,44 @@ public class BinaryScTest {
             assertNotEquals(expectedScFloat3, float1);
         }
     }
+
+    @RepeatedTest(20)
+    void andOrBooleanTest() {
+        var bool1 = new ScBoolean(true);
+        var bool2 = new ScBoolean(false);
+        StringBuilder zero1 = new StringBuilder();
+        StringBuilder ones1 = new StringBuilder();
+        StringBuilder zero2 = new StringBuilder();
+        StringBuilder ones2 = new StringBuilder();
+        for (int i=0; i<s1.length();i++) {
+            zero1.append('0');
+            ones1.append('1');
+        }
+        for (int j=0;j<s2.length();j++) {
+            zero2.append('0');
+            ones2.append('1');
+        }
+        ScBinary expected10 = new ScBinary(zero1.toString());
+        ScBinary expected11 = new ScBinary(ones1.toString());
+        ScBinary expected20 = new ScBinary(zero2.toString());
+        ScBinary expected21 = new ScBinary(ones2.toString());
+        ScBinary actual1 = bin1.and(bool1);
+        ScBinary actual2 = bin1.and(bool2);
+        ScBinary actual3 = bin1.or(bool1);
+        ScBinary actual4 = bin1.or(bool2);
+        ScBinary actual5 = bin2.and(bool1);
+        ScBinary actual6 = bin2.and(bool2);
+        ScBinary actual7 = bin2.or(bool1);
+        ScBinary actual8 = bin2.or(bool2);
+        assertEquals(bin1, actual1);
+        assertEquals(expected10, actual2);
+        assertEquals(expected11, actual3);
+        assertEquals(bin1, actual4);
+        assertEquals(bin2, actual5);
+        assertEquals(expected20, actual6);
+        assertEquals(expected21, actual7);
+        assertEquals(bin2, actual8);
+    }
+
 }
 

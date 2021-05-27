@@ -2,7 +2,6 @@ package files;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -133,4 +132,275 @@ public class ScIntTest {
         }
     }
 
+    @RepeatedTest(20)
+    void addFloatTest() {
+        float f1 = r1.nextFloat() + r3.nextFloat();
+        float f2 = r2.nextFloat() - r3.nextFloat();
+        var float1 = new ScFloat(f1);
+        var float2 = new ScFloat(f2);
+        float fl1 = (float) n1 + f1;
+        float fl2 = (float) n1 + f2;
+        float fl3 = (float) n2 + f1;
+        float fl4 = (float) n2 + f2;
+        ScFloat expected1 = new ScFloat(fl1);
+        ScFloat expected2 = new ScFloat(fl2);
+        ScFloat expected3 = new ScFloat(fl3);
+        ScFloat expected4 = new ScFloat(fl4);
+        ScFloat actual1 = int1.add(float1);
+        ScFloat actual2 = int1.add(float2);
+        ScFloat actual3 = int2.add(float1);
+        ScFloat actual4 = int2.add(float2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void subFloatTest() {
+        float f1 = r1.nextFloat() + r3.nextFloat();
+        float f2 = r2.nextFloat() - r3.nextFloat();
+        var float1 = new ScFloat(f1);
+        var float2 = new ScFloat(f2);
+        float fl1 = (float) n1 - f1;
+        float fl2 = (float) n1 - f2;
+        float fl3 = (float) n2 - f1;
+        float fl4 = (float) n2 - f2;
+        ScFloat expected1 = new ScFloat(fl1);
+        ScFloat expected2 = new ScFloat(fl2);
+        ScFloat expected3 = new ScFloat(fl3);
+        ScFloat expected4 = new ScFloat(fl4);
+        ScFloat actual1 = int1.sub(float1);
+        ScFloat actual2 = int1.sub(float2);
+        ScFloat actual3 = int2.sub(float1);
+        ScFloat actual4 = int2.sub(float2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void mulFloatTest() {
+        float f1 = r1.nextFloat() + r3.nextFloat();
+        float f2 = r2.nextFloat() - r3.nextFloat();
+        var float1 = new ScFloat(f1);
+        var float2 = new ScFloat(f2);
+        float fl1 = (float) n1 * f1;
+        float fl2 = (float) n1 * f2;
+        float fl3 = (float) n2 * f1;
+        float fl4 = (float) n2 * f2;
+        ScFloat expected1 = new ScFloat(fl1);
+        ScFloat expected2 = new ScFloat(fl2);
+        ScFloat expected3 = new ScFloat(fl3);
+        ScFloat expected4 = new ScFloat(fl4);
+        ScFloat actual1 = int1.mul(float1);
+        ScFloat actual2 = int1.mul(float2);
+        ScFloat actual3 = int2.mul(float1);
+        ScFloat actual4 = int2.mul(float2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void divFloatTest() {
+        float f1 = r1.nextFloat() + r3.nextFloat();
+        float f2 = r2.nextFloat() - r3.nextFloat();
+        var float1 = new ScFloat(f1);
+        var float2 = new ScFloat(f2);
+        float fl1 = (float) n1 / f1;
+        float fl2 = (float) n1 / f2;
+        float fl3 = (float) n2 / f1;
+        float fl4 = (float) n2 / f2;
+        ScFloat expected1 = new ScFloat(fl1);
+        ScFloat expected2 = new ScFloat(fl2);
+        ScFloat expected3 = new ScFloat(fl3);
+        ScFloat expected4 = new ScFloat(fl4);
+        ScFloat actual1 = int1.div(float1);
+        ScFloat actual2 = int1.div(float2);
+        ScFloat actual3 = int2.div(float1);
+        ScFloat actual4 = int2.div(float2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void addIntTest() {
+        int exp1 = n1 + n1;
+        int exp2 = n1 + n2;
+        int exp3 = n2 + n1;
+        int exp4 = n2 + n2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.add(int1);
+        ScInt actual2 = int1.add(int2);
+        ScInt actual3 = int2.add(int1);
+        ScInt actual4 = int2.add(int2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void subIntTest() {
+        int exp1 = 0;
+        int exp2 = n1 - n2;
+        int exp3 = n2 - n1;
+        int exp4 = n3 - n2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.sub(int1);
+        ScInt actual2 = int1.sub(int2);
+        ScInt actual3 = int2.sub(int1);
+        ScInt actual4 = int3.sub(int2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void mulIntTest() {
+        int exp1 = n1 * n1;
+        int exp2 = n1 * n2;
+        int exp3 = n2 * n1;
+        int exp4 = n2 * n2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.mul(int1);
+        ScInt actual2 = int1.mul(int2);
+        ScInt actual3 = int2.mul(int1);
+        ScInt actual4 = int2.mul(int2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void divIntTest() {
+        int exp1 = 1;
+        int exp2 = n1 / n2;
+        int exp3 = n2 / n1;
+        int exp4 = n3 / n2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.div(int1);
+        ScInt actual2 = int1.div(int2);
+        ScInt actual3 = int2.div(int1);
+        ScInt actual4 = int3.div(int2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void addBinaryTest() {
+        int num1 = n1 + n3;
+        int num2 = n1 - n2;
+        var bin1 = new ScBinary(intToBin(num1));
+        var bin2 = new ScBinary(intToBin(num2));
+        int exp1 = n1 + num1;
+        int exp2 = n1 + num2;
+        int exp3 = n2 + num1;
+        int exp4 = n2 + num2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.add(bin1);
+        ScInt actual2 = int1.add(bin2);
+        ScInt actual3 = int2.add(bin1);
+        ScInt actual4 = int2.add(bin2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void subBinaryTest() {
+        int num1 = n1 + n3;
+        int num2 = n1 - n2;
+        var bin1 = new ScBinary(intToBin(num1));
+        var bin2 = new ScBinary(intToBin(num2));
+        int exp1 = n1 - num1;
+        int exp2 = n1 - num2;
+        int exp3 = n2 - num1;
+        int exp4 = n2 - num2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.sub(bin1);
+        ScInt actual2 = int1.sub(bin2);
+        ScInt actual3 = int2.sub(bin1);
+        ScInt actual4 = int2.sub(bin2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void mulBinaryTest() {
+        int num1 = n1 + n3;
+        int num2 = n1 - n2;
+        var bin1 = new ScBinary(intToBin(num1));
+        var bin2 = new ScBinary(intToBin(num2));
+        int exp1 = n1 * num1;
+        int exp2 = n1 * num2;
+        int exp3 = n2 * num1;
+        int exp4 = n2 * num2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.mul(bin1);
+        ScInt actual2 = int1.mul(bin2);
+        ScInt actual3 = int2.mul(bin1);
+        ScInt actual4 = int2.mul(bin2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(20)
+    void divBinaryTest() {
+        int num1 = n1 + n3;
+        int num2 = n1 - n2;
+        var bin1 = new ScBinary(intToBin(num1));
+        var bin2 = new ScBinary(intToBin(num2));
+        int exp1 = n1 / num1;
+        int exp2 = n1 / num2;
+        int exp3 = n2 / num1;
+        int exp4 = n2 / num2;
+        ScInt expected1 = new ScInt(exp1);
+        ScInt expected2 = new ScInt(exp2);
+        ScInt expected3 = new ScInt(exp3);
+        ScInt expected4 = new ScInt(exp4);
+        ScInt actual1 = int1.div(bin1);
+        ScInt actual2 = int1.div(bin2);
+        ScInt actual3 = int2.div(bin1);
+        ScInt actual4 = int2.div(bin2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
 }

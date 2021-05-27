@@ -1,10 +1,12 @@
 package files;
 
-import files.ScBoolean;
+import static files.BinaryToInt.intToBin;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 /**
  * @author jaedango
@@ -51,5 +53,65 @@ public class ScBooleanTest {
         assertNotEquals(expectedScStr2, ScStr1);
     }
 
+    @Test
+    void andOrScBooleanTest() {
+        var expectedBool1 = new ScBoolean(true);
+        var expectedBool2 = new ScBoolean(false);
+        ScBoolean actualBool1 = bool1.and(expectedBool1);   // t && t
+        ScBoolean actualBool2 = bool1.and(expectedBool2);   // t && f
+        ScBoolean actualBool3 = bool2.and(expectedBool1);   // f && t
+        ScBoolean actualBool4 = bool2.and(expectedBool2);   // f && f
+        ScBoolean actualBool5 = bool1.or(expectedBool1);    // t || t
+        ScBoolean actualBool6 = bool1.or(expectedBool2);    // t || f
+        ScBoolean actualBool7 = bool2.or(expectedBool1);    // f || t
+        ScBoolean actualBool8 = bool2.or(expectedBool2);    // f || f
+        assertEquals(expectedBool1, actualBool1);
+        assertEquals(expectedBool2, actualBool2);
+        assertEquals(expectedBool2, actualBool3);
+        assertEquals(expectedBool2, actualBool4);
+        assertEquals(expectedBool1, actualBool5);
+        assertEquals(expectedBool1, actualBool6);
+        assertEquals(expectedBool1, actualBool7);
+        assertEquals(expectedBool2, actualBool8);
+    }
 
+    @Test
+    void notTest() {
+        var expectedBool1 = new ScBoolean(false);
+        var expectedBool2 = new ScBoolean(true);
+        ScBoolean actualBool1 = bool1.not();
+        ScBoolean actualBool2 = bool2.not();
+        assertEquals(expectedBool1, actualBool1);
+        assertEquals(expectedBool2, actualBool2);
+    }
+
+    @Test
+    void andOrScBinaryTest() {
+        // Nota : Para automatizar hacer un String del mismo largo que el String
+        //        relleno con 1's y uno con 0's.
+        String bin1 = "100100";
+        String bin2 = "011011";
+        String bin3 = "000000";
+        String bin4 = "111111";
+        ScBinary sample1 = new ScBinary(bin1);
+        ScBinary sample2 = new ScBinary(bin2);
+        ScBinary sample3 = new ScBinary(bin3);
+        ScBinary sample4 = new ScBinary(bin4);
+        ScBinary actual1 = bool1.and(sample1);  // 100100
+        ScBinary actual2 = bool1.or(sample1);   // 111111
+        ScBinary actual3 = bool2.and(sample1);  // 000000
+        ScBinary actual4 = bool2.or(sample1);   // 100100
+        ScBinary actual5 = bool1.and(sample2);  // 011011
+        ScBinary actual6 = bool1.or(sample2);   // 111111
+        ScBinary actual7 = bool2.and(sample2);  // 000000
+        ScBinary actual8 = bool2.or(sample2);   // 011011
+        assertEquals(sample1, actual1);
+        assertEquals(sample4, actual2);
+        assertEquals(sample3, actual3);
+        assertEquals(sample1, actual4);
+        assertEquals(sample2, actual5);
+        assertEquals(sample4, actual6);
+        assertEquals(sample3, actual7);
+        assertEquals(sample2, actual8);
+    }
 }
