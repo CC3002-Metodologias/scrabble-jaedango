@@ -1,10 +1,9 @@
 package files;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 import static files.BinaryToInt.intToBin;
-import static files.BinaryToInt.toInt;
+import static files.BinaryToInt.binToInt;
 
 /**
  * @author jaedango
@@ -55,12 +54,12 @@ public class ScBinary {
     }
 
     public ScFloat toScFloat() {
-        float f = (float) toInt(this.value);
+        float f = (float) binToInt(this.value);
         return new ScFloat(f);
     }
 
     public ScInt toScInt() {
-        int n = toInt(this.value);
+        int n = binToInt(this.value);
         return new ScInt(n);
     }
 
@@ -104,22 +103,22 @@ public class ScBinary {
      * @return ScBinary
      */
     public ScBinary add(ScInt n) {
-        int val = toInt(this.value) + n.value;
+        int val = binToInt(this.value) + n.value;
         return new ScBinary(intToBin(val));
     }
 
     public ScBinary sub(ScInt n) {
-        int val = toInt(this.value) - n.value;
+        int val = binToInt(this.value) - n.value;
         return new ScBinary(intToBin(val));
     }
 
     public ScBinary mul(ScInt n) {
-        int val = toInt(this.value) * n.value;
+        int val = binToInt(this.value) * n.value;
         return new ScBinary(intToBin(val));
     }
 
     public ScBinary div(ScInt n) {
-        int val = toInt(this.value) / n.value;
+        int val = binToInt(this.value) / n.value;
         return new ScBinary(intToBin(val));
     }
 
@@ -128,22 +127,22 @@ public class ScBinary {
      * @return
      */
     public ScBinary add(ScBinary bin) {
-        int val = toInt(this.value) + toInt(bin.value);
+        int val = binToInt(this.value) + binToInt(bin.value);
         return new ScBinary(intToBin(val));
     }
 
     public ScBinary sub(ScBinary bin) {
-        int val = toInt(this.value) - toInt(bin.value);
+        int val = binToInt(this.value) - binToInt(bin.value);
         return new ScBinary(intToBin(val));
     }
 
     public ScBinary mul(ScBinary bin) {
-        int val = toInt(this.value) * toInt(bin.value);
+        int val = binToInt(this.value) * binToInt(bin.value);
         return new ScBinary(intToBin(val));
     }
 
     public ScBinary div(ScBinary bin) {
-        int val = toInt(this.value) / toInt(bin.value);
+        int val = binToInt(this.value) / binToInt(bin.value);
         return new ScBinary(intToBin(val));
     }
 

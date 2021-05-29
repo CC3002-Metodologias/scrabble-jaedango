@@ -12,5 +12,11 @@ _CC3002 Metodologías de Diseño y programación_ of the
 _University of Chile_.
 
 ---
-
-**The rest of the documentation is left for the users of this template to complete**
+At this moment, this don't do anything :(  
+We are working to merge everything, but we have functional classes :D  
+Actual classes:  
+	- ScBinary 	: Scrabble type binary, receive an String with only 0's and 1's.  
+	- ScInt 	: Scrabble type Int, receives an Integer.  
+	- ScFloat 	: Scrabble type Float, receives a floating point number.  
+	- ScBoolean : Scrabble type Boolean, receives only 'true' and 'false' values.  
+	- ScString 	: Scrabble type String, receives any String.

@@ -32,7 +32,7 @@ public class ScFloatTest {
         float3 = new ScFloat(f3);
     }
 
-    @RepeatedTest(200)
+    @RepeatedTest(100)
     void constructTest() {
         var expectedScFloat1 = new ScFloat(f1);
         var expectedScFloat2 = new ScFloat(f2);
@@ -57,7 +57,7 @@ public class ScFloatTest {
         }
     }
 
-    @RepeatedTest(200)
+    @RepeatedTest(100)
     void transformationScString() {
         var expectedScString1 = new ScString(String.valueOf(f1));
         var expectedScString2 = new ScString(String.valueOf(f2));
@@ -82,7 +82,7 @@ public class ScFloatTest {
         }
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addFloatTest() {
         float sum1 = f1 + f1;
         float sum2 = f1 + f2;
@@ -102,7 +102,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void subFloatTest() {
         float sub1 = 0;
         float sub2 = f1 - f2;
@@ -122,7 +122,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void mulFloatTest() {
         float mul1 = f1 * f1;
         float mul2 = f1 * f2;
@@ -142,7 +142,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void divFloatTest() {
         float div1 = 1f;
         float div2 = f1 / f2;
@@ -162,7 +162,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addIntTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -186,7 +186,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void subIntTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -210,7 +210,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void mulIntTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -234,7 +234,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void divIntTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -258,7 +258,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addBinTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -282,7 +282,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void subBinTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -306,7 +306,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void mulBinTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();
@@ -330,7 +330,7 @@ public class ScFloatTest {
         assertEquals(expected4, actual4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void divBinTest() {
         int n1 = r1.nextInt() + r3.nextInt();
         int n2 = r2.nextInt() - r3.nextInt();

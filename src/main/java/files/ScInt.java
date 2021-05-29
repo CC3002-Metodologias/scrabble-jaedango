@@ -3,7 +3,7 @@ package files;
 import java.util.Objects;
 
 import static files.BinaryToInt.intToBin;
-import static files.BinaryToInt.toInt;
+import static files.BinaryToInt.binToInt;
 
 /**
  * @author jaedango
@@ -103,22 +103,22 @@ public class ScInt {
      * @return ScInt
      */
     public ScInt add(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScInt(this.value + n);
     }
 
     public ScInt sub(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScInt(this.value - n);
     }
 
     public ScInt mul(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScInt(this.value * n);
     }
 
     public ScInt div(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScInt(this.value / n);
     }
 

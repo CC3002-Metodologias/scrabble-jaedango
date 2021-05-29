@@ -2,7 +2,7 @@ package files;
 
 import java.util.Objects;
 
-import static files.BinaryToInt.toInt;
+import static files.BinaryToInt.binToInt;
 
 /**
  * @author jaedango
@@ -93,22 +93,22 @@ public class ScFloat {
      * @return ScFloat
      */
     public ScFloat add(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScFloat(this.value + (float) n);
     }
 
     public ScFloat sub(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScFloat(this.value - (float) n);
     }
 
     public ScFloat mul(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScFloat(this.value * (float) n);
     }
 
     public ScFloat div(ScBinary bin) {
-        int n = toInt(bin.value);
+        int n = binToInt(bin.value);
         return new ScFloat(this.value / (float) n);
     }
 }

@@ -5,7 +5,7 @@ package files;
  */
 
 public class BinaryToInt {
-    public static int toInt(String bin) {
+    public static int binToInt(String bin) {
         if (binToInt (bin.charAt(0)) == 0) {
             return positiveBinToInt(bin);
         } else {

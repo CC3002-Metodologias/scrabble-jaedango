@@ -56,7 +56,7 @@ public class ScStringTest {
     }
 
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addScStringTest() {
         String string1 = s1 + s2;
         String string2 = s2 + s1;
@@ -76,7 +76,7 @@ public class ScStringTest {
         assertEquals(expectedSum4, actualStr4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addScBoolTest() {
         String string1 = s1 + true;
         String string2 = s1 + false;
@@ -98,7 +98,7 @@ public class ScStringTest {
         assertEquals(expectedSum4, actualStr4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addScFloatTest() {
         float f1 = r1.nextFloat();
         float f2 = r2.nextFloat();
@@ -122,7 +122,7 @@ public class ScStringTest {
         assertEquals(expectedSum4, actualStr4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addScIntTest() {
         int n1 = r1.nextInt();
         int n2 = r2.nextInt();
@@ -146,7 +146,7 @@ public class ScStringTest {
         assertEquals(expectedSum4, actualStr4);
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(100)
     void addScBinaryTest() {
         int n1 = r1.nextInt();
         int n2 = r2.nextInt();
