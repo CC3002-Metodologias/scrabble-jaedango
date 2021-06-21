@@ -1,4 +1,6 @@
-package files;
+package files.types;
+
+import files.types.numbers.ScBinary;
 
 import java.util.Objects;
 
@@ -7,11 +9,19 @@ import java.util.Objects;
  * ScBoolean : Boolean for Scrabble
  * accepts only true y false values
  */
-public class ScBoolean {
+public class ScBoolean implements ScType {
     protected boolean value;
 
     public ScBoolean(boolean val) {
         this.value = val;
+    }
+
+    public boolean getValue() {
+        return this.value;
+    }
+
+    public ScString addScString(ScString addend) {
+        return new ScString (this.toString() + addend.toString());
     }
 
     /**
@@ -42,7 +52,6 @@ public class ScBoolean {
 
     /**
      * Method to transform ScBoolean into other classes.
-     * @return
      */
     public ScString toScString() {
         return new ScString(String.valueOf(this.value));
@@ -59,19 +68,19 @@ public class ScBoolean {
     /**
      * Booleans 'and' and 'or' methods with other booleans
      */
-    public ScBoolean and(ScBoolean bool) {
+    public ScBoolean andBool(ScBoolean bool) {
         return new ScBoolean(this.value && bool.value);
     }
 
-    public ScBoolean or(ScBoolean bool) {
+    public ScBoolean orBool(ScBoolean bool) {
         return new ScBoolean(this.value || bool.value);
     }
 
     /**
      * Boolean 'and' and 'or' method with binary
      */
-    public ScBinary and(ScBinary bin) {
-        String copy = bin.value;
+    public ScBinary andBinary(ScBinary bin) {
+        String copy = bin.getValue();
         StringBuilder str = new StringBuilder();
         for (int i=0;i<copy.length();i++) {
             char c = copy.charAt(i);
@@ -84,8 +93,8 @@ public class ScBoolean {
         return new ScBinary(str.toString());
     }
 
-    public ScBinary or(ScBinary bin) {
-        String copy = bin.value;
+    public ScBinary orBinary(ScBinary bin) {
+        String copy = bin.getValue();
         StringBuilder str = new StringBuilder();
         for (int i=0;i<copy.length();i++) {
             char c = copy.charAt(i);

@@ -1,4 +1,8 @@
-package files;
+package files.types;
+
+import files.types.numbers.ScBinary;
+import files.types.numbers.ScFloat;
+import files.types.numbers.ScInt;
 
 import java.util.Objects;
 
@@ -7,7 +11,7 @@ import java.util.Objects;
  * ScString : String for Scrabble
  */
 
-public class ScString {
+public class ScString extends AbstractType {
     protected String value;
 
     public ScString(String str) {
@@ -20,7 +24,7 @@ public class ScString {
      */
     @Override
     public String toString() {
-        return "ScString { " + this.value + "}";
+        return this.value;
     }
 
     @Override
@@ -37,11 +41,20 @@ public class ScString {
         return false;
     }
 
+
+    /**
+     * cast this as other types
+     * @return new ScString
+     */
+    public ScString toScString() {
+        return new ScString(this.value);
+    }
+
     /**
      * Method to concatenate ScString with other ScString
      * @return ScString
      */
-    public ScString add(ScString str) {
+    public ScString addScString(ScString str) {
         return new ScString(this.value + str.value);
     }
 
@@ -49,7 +62,7 @@ public class ScString {
      * Method to concatenate ScString with ScBoolean
      * @return ScString
      */
-    public ScString add(ScBoolean bool) {
+    public ScString addScBool(ScBoolean bool) {
         return new ScString(this.value + bool.toString());
     }
 
@@ -57,7 +70,7 @@ public class ScString {
      * Method to concatenate ScString with ScFloat
      * @return ScString
      */
-    public ScString add(ScFloat fl) {
+    public ScString addScFloat(ScFloat fl) {
         return new ScString(this.value + fl.toString());
     }
 
@@ -65,7 +78,7 @@ public class ScString {
      * Method to concatenate ScString with ScInt
      * @return ScString
      */
-    public ScString add(ScInt n) {
+    public ScString addScInt(ScInt n) {
         return new ScString(this.value + n.toString());
     }
 
@@ -73,7 +86,7 @@ public class ScString {
      * Method to concatenate ScString with ScBinary
      * @return ScString
      */
-    public ScString add(ScBinary bin) {
+    public ScString addScBinary(ScBinary bin) {
         return new ScString(this.value + bin.toString());
     }
 

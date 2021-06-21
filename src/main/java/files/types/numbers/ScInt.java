@@ -1,16 +1,20 @@
-package files;
+package files.types.numbers;
+
+import files.operands.BinaryOperand;
+import files.types.AbstractType;
+import files.types.ScString;
 
 import java.util.Objects;
 
-import static files.BinaryToInt.intToBin;
-import static files.BinaryToInt.binToInt;
+import static files.types.numbers.BinaryToInt.intToBin;
+import static files.types.numbers.BinaryToInt.binToInt;
 
 /**
  * @author jaedango
  * ScInt : Integers for Scrabble
  */
 
-public class ScInt {
+public class ScInt extends AbstractType implements BinaryOperand, ScNumber {
     protected int value;
 
     public ScInt(int n) {
@@ -35,12 +39,13 @@ public class ScInt {
     public boolean equals(Object obj) {
         if (obj instanceof ScInt) {
             var other = (ScInt) obj;
-            if (Integer.compare(this.value, other.value) == 0) {
-                return true;
-            }
-            return false;
+            return Integer.compare(this.value, other.value) == 0;
         }
         return false;
+    }
+
+    public ScString addScString(ScString addend) {
+        return new ScString(this.toString() + addend.toString());
     }
 
     /**
@@ -58,23 +63,25 @@ public class ScInt {
         return new ScBinary(intToBin(this.value));
     }
 
+    public ScInt toScInt() { return new ScInt(this.value); }
+
     /**
      * Methods '+', '-', '*', '/' to operate with ScFloat
      * @return ScFloat
      */
-    public ScFloat add(ScFloat fl) {
+    public ScFloat addToFloat(ScFloat fl) {
         return new ScFloat((float) this.value + fl.value);
     }
 
-    public ScFloat sub(ScFloat fl) {
+    public ScFloat subToFloat(ScFloat fl) {
         return new ScFloat((float) this.value - fl.value);
     }
 
-    public ScFloat mul(ScFloat fl) {
+    public ScFloat mulToFloat(ScFloat fl) {
         return new ScFloat((float) this.value * fl.value);
     }
 
-    public ScFloat div(ScFloat fl) {
+    public ScFloat divToFloat(ScFloat fl) {
         return new ScFloat((float) this.value / fl.value);
     }
 
@@ -82,19 +89,19 @@ public class ScInt {
      * Methods '+', '-', '*', '/' to operate with other ScInt
      * @return ScInt
      */
-    public ScInt add(ScInt n) {
+    public ScInt addToInt(ScInt n) {
         return new ScInt(this.value + n.value);
     }
 
-    public ScInt sub(ScInt n) {
+    public ScInt subToInt(ScInt n) {
         return new ScInt(this.value - n.value);
     }
 
-    public ScInt mul(ScInt n) {
+    public ScInt mulToInt(ScInt n) {
         return new ScInt(this.value * n.value);
     }
 
-    public ScInt div(ScInt n) {
+    public ScInt divToInt(ScInt n) {
         return new ScInt(this.value / n.value);
     }
 
@@ -102,25 +109,24 @@ public class ScInt {
      * Methods '+', '-', '*', '/' to operate with ScBinary
      * @return ScInt
      */
-    public ScInt add(ScBinary bin) {
+    public ScInt addToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScInt(this.value + n);
     }
 
-    public ScInt sub(ScBinary bin) {
+    public ScInt subToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScInt(this.value - n);
     }
 
-    public ScInt mul(ScBinary bin) {
+    public ScInt mulToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScInt(this.value * n);
     }
 
-    public ScInt div(ScBinary bin) {
+    public ScInt divToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScInt(this.value / n);
     }
-
 
 }

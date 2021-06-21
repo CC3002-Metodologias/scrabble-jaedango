@@ -1,4 +1,4 @@
-package files;
+package files.types.numbers;
 
 /**
  * Class to transform from integer to a binary String and from a binary String to int

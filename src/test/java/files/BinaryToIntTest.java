@@ -3,8 +3,8 @@ package files;
 
 import org.junit.jupiter.api.Test;
 
-import static files.BinaryToInt.binToInt;
-import static files.BinaryToInt.intToBin;
+import static files.types.numbers.BinaryToInt.binToInt;
+import static files.types.numbers.BinaryToInt.intToBin;
 
 /**
  * @author jaedango

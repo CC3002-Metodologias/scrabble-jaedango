@@ -1,6 +1,10 @@
 package files;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import files.types.ScBoolean;
+import files.types.ScString;
+import files.types.numbers.ScBinary;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -54,14 +58,14 @@ public class ScBooleanTest {
     void andOrScBooleanTest() {
         var expectedBool1 = new ScBoolean(true);
         var expectedBool2 = new ScBoolean(false);
-        ScBoolean actualBool1 = bool1.and(expectedBool1);   // t && t
-        ScBoolean actualBool2 = bool1.and(expectedBool2);   // t && f
-        ScBoolean actualBool3 = bool2.and(expectedBool1);   // f && t
-        ScBoolean actualBool4 = bool2.and(expectedBool2);   // f && f
-        ScBoolean actualBool5 = bool1.or(expectedBool1);    // t || t
-        ScBoolean actualBool6 = bool1.or(expectedBool2);    // t || f
-        ScBoolean actualBool7 = bool2.or(expectedBool1);    // f || t
-        ScBoolean actualBool8 = bool2.or(expectedBool2);    // f || f
+        ScBoolean actualBool1 = bool1.andBool(expectedBool1);   // t && t
+        ScBoolean actualBool2 = bool1.andBool(expectedBool2);   // t && f
+        ScBoolean actualBool3 = bool2.andBool(expectedBool1);   // f && t
+        ScBoolean actualBool4 = bool2.andBool(expectedBool2);   // f && f
+        ScBoolean actualBool5 = bool1.orBool(expectedBool1);    // t || t
+        ScBoolean actualBool6 = bool1.orBool(expectedBool2);    // t || f
+        ScBoolean actualBool7 = bool2.orBool(expectedBool1);    // f || t
+        ScBoolean actualBool8 = bool2.orBool(expectedBool2);    // f || f
         assertEquals(expectedBool1, actualBool1);
         assertEquals(expectedBool2, actualBool2);
         assertEquals(expectedBool2, actualBool3);
@@ -94,14 +98,14 @@ public class ScBooleanTest {
         ScBinary sample2 = new ScBinary(bin2);
         ScBinary sample3 = new ScBinary(bin3);
         ScBinary sample4 = new ScBinary(bin4);
-        ScBinary actual1 = bool1.and(sample1);  // 100100
-        ScBinary actual2 = bool1.or(sample1);   // 111111
-        ScBinary actual3 = bool2.and(sample1);  // 000000
-        ScBinary actual4 = bool2.or(sample1);   // 100100
-        ScBinary actual5 = bool1.and(sample2);  // 011011
-        ScBinary actual6 = bool1.or(sample2);   // 111111
-        ScBinary actual7 = bool2.and(sample2);  // 000000
-        ScBinary actual8 = bool2.or(sample2);   // 011011
+        ScBinary actual1 = bool1.andBinary(sample1);  // 100100
+        ScBinary actual2 = bool1.orBinary(sample1);   // 111111
+        ScBinary actual3 = bool2.andBinary(sample1);  // 000000
+        ScBinary actual4 = bool2.orBinary(sample1);   // 100100
+        ScBinary actual5 = bool1.andBinary(sample2);  // 011011
+        ScBinary actual6 = bool1.orBinary(sample2);   // 111111
+        ScBinary actual7 = bool2.andBinary(sample2);  // 000000
+        ScBinary actual8 = bool2.orBinary(sample2);   // 011011
         assertEquals(sample1, actual1);
         assertEquals(sample4, actual2);
         assertEquals(sample3, actual3);

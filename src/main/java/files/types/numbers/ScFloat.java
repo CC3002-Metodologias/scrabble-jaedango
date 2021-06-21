@@ -1,19 +1,25 @@
-package files;
+package files.types.numbers;
+
+import files.types.ScString;
 
 import java.util.Objects;
 
-import static files.BinaryToInt.binToInt;
+import static files.types.numbers.BinaryToInt.binToInt;
 
 /**
  * @author jaedango
  * ScFloat : float for Scrabble
  */
 
-public class ScFloat {
+public class ScFloat implements ScNumber {
     protected float value;
 
     public ScFloat(float v) {
         this.value = v;
+    }
+
+    public ScString addScString(ScString addend) {
+        return new ScString(this.toString() + addend.toString());
     }
 
     /**
@@ -34,9 +40,7 @@ public class ScFloat {
     public boolean equals(Object obj) {
         if (obj instanceof ScFloat) {
             var other = (ScFloat) obj;
-            if (Float.compare(this.value, other.value) == 0) {
-                return true;
-            } return false;
+            return Float.compare(this.value, other.value) == 0;
         }
         return false;
     }
@@ -48,23 +52,25 @@ public class ScFloat {
         return new ScString(String.valueOf(this.value));
     }
 
+    public ScFloat toScFloat() { return new ScFloat(this.value); }
+
     /**
      * Methods '+', '-', '*', '/' to operate with other ScFloat
      * @return ScFloat
      */
-    public ScFloat add(ScFloat fl) {
+    public ScFloat addToFloat(ScFloat fl) {
         return new ScFloat(this.value + fl.value);
     }
 
-    public ScFloat sub(ScFloat fl) {
+    public ScFloat subToFloat(ScFloat fl) {
         return new ScFloat(this.value - fl.value);
     }
 
-    public ScFloat mul(ScFloat fl) {
+    public ScFloat mulToFloat(ScFloat fl) {
         return new ScFloat(this.value * fl.value);
     }
 
-    public ScFloat div(ScFloat fl) {
+    public ScFloat divToFloat(ScFloat fl) {
         return new ScFloat(this.value / fl.value);
     }
 
@@ -72,19 +78,19 @@ public class ScFloat {
      * Methods '+', '-', '*', '/' to operate with ScInt
      * @return ScFloat
      */
-    public ScFloat add(ScInt n) {
+    public ScFloat addToInt(ScInt n) {
         return new ScFloat(this.value + (float)n.value);
     }
 
-    public ScFloat sub(ScInt n) {
+    public ScFloat subToInt(ScInt n) {
         return new ScFloat(this.value - (float)n.value);
     }
 
-    public ScFloat mul(ScInt n) {
+    public ScFloat mulToInt(ScInt n) {
         return new ScFloat(this.value * (float)n.value);
     }
 
-    public ScFloat div(ScInt n) {
+    public ScFloat divToInt(ScInt n) {
         return new ScFloat(this.value / (float)n.value);
     }
 
@@ -92,22 +98,22 @@ public class ScFloat {
      * Methods '+', '-', '*', '/' to operate with ScBinary
      * @return ScFloat
      */
-    public ScFloat add(ScBinary bin) {
+    public ScFloat addToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScFloat(this.value + (float) n);
     }
 
-    public ScFloat sub(ScBinary bin) {
+    public ScFloat subToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScFloat(this.value - (float) n);
     }
 
-    public ScFloat mul(ScBinary bin) {
+    public ScFloat mulToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScFloat(this.value * (float) n);
     }
 
-    public ScFloat div(ScBinary bin) {
+    public ScFloat divToBin(ScBinary bin) {
         int n = binToInt(bin.value);
         return new ScFloat(this.value / (float) n);
     }
