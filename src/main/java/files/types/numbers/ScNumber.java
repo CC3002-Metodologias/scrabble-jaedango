@@ -20,4 +20,16 @@ public interface ScNumber extends ScType {
     ScNumber mulToInt(ScInt product);
 
     ScNumber divToInt(ScInt dividend);
+
+    /**
+     * Binary Ops : add (+), subs (-), multiply (*), divide (/)
+     * @return new ScBinary
+     */
+    ScNumber addToBin(ScBinary addend);
+
+    ScNumber subToBin(ScBinary substrate);
+
+    ScNumber mulToBin(ScBinary product);
+
+    ScNumber divToBin(ScBinary dividend);
 }

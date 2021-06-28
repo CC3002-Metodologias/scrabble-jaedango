@@ -1,5 +1,6 @@
 package files.types;
 
+import files.operands.Logical;
 import files.types.numbers.ScBinary;
 
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.Objects;
  * ScBoolean : Boolean for Scrabble
  * accepts only true y false values
  */
-public class ScBoolean implements ScType {
+public class ScBoolean implements ScType, Logical {
     protected boolean value;
 
     public ScBoolean(boolean val) {
@@ -42,10 +43,7 @@ public class ScBoolean implements ScType {
     public boolean equals(Object obj) {
         if (obj instanceof ScBoolean) {
             var other = (ScBoolean) obj;
-            if (Boolean.compare(this.value, other.value) == 0) {
-                return true;
-            }
-            return false;
+            return Boolean.compare(this.value, other.value) == 0;
         }
         return false;
     }
@@ -63,6 +61,18 @@ public class ScBoolean implements ScType {
      */
     public ScBoolean not() {
         return new ScBoolean(!this.value);
+    }
+
+    /**
+     * Logical 'and' & 'or'
+     * @return new Logical
+     */
+    public Logical and(Logical bool) {
+        return bool.andBool(this);
+    }
+
+    public Logical or(Logical bool) {
+        return bool.orBool(this);
     }
 
     /**

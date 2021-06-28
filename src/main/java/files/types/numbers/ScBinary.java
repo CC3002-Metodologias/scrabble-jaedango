@@ -56,48 +56,54 @@ public class ScBinary extends AbstractType implements BinaryOperand, ScNumber, L
         return false;
     }
 
-    /**
-     * Methods to transform ScBinary into other classes
-     */
-    public ScString toScString() {
-        return new ScString(this.value);
-    }
-
     @Override
     public ScString addScString(ScString addend) {
         return new ScString(this.value + addend.toString());
     }
 
+    /**
+     * Methods to transform ScBinary into other classes
+     */
+    @Override
+    public ScString toScString() {
+        return new ScString(this.value);
+    }
+
+    @Override
     public ScFloat toScFloat() {
         float f = (float) binToInt(this.value);
         return new ScFloat(f);
     }
 
-
-
+    @Override
     public ScInt toScInt() {
         int n = binToInt(this.value);
         return new ScInt(n);
     }
 
+    @Override
     public ScBinary toScBinary() {
         return new ScBinary(this.value);
     }
 
+    /**
+     * Logical 'and' and 'or' functions
+     * @return new Logical
+     */
     @Override
     public Logical and(Logical conjunct) {
-        return this.andBool((ScBoolean) conjunct);
+        return conjunct.andBinary(this);
     }
 
     @Override
     public Logical or(Logical conjunct) {
-        return this.orBool((ScBoolean) conjunct);
+        return conjunct.orBinary(this);
     }
 
     /**
-     * boolean 'and' operator between boolean and binary
+     * boolean 'and' with a ScBoolean
      */
-
+    @Override
     public ScBinary andBool(ScBoolean bool) {
         String copy = this.value;
         StringBuilder str = new StringBuilder();
@@ -113,8 +119,9 @@ public class ScBinary extends AbstractType implements BinaryOperand, ScNumber, L
     }
 
     /**
-     * boolean 'or' operator netween boolean and binary
+     * boolean 'or' operator with a ScBoolean
      */
+    @Override
     public ScBinary orBool(ScBoolean bool) {
         String copy = this.value;
         StringBuilder str = new StringBuilder();
@@ -129,37 +136,64 @@ public class ScBinary extends AbstractType implements BinaryOperand, ScNumber, L
         return new ScBinary(str.toString());
     }
 
+    /**
+     * boolean 'and' with ScBinary
+     */
     @Override
     public Logical andBinary(ScBinary operand) {
         return null;
     }
 
+    /**
+     * boolean 'or' with ScBinary
+     */
     @Override
     public Logical orBinary(ScBinary operand) {
         return null;
     }
 
     /**
+     * Basic Operations
+     */
+    public ScNumber add(ScNumber addend) { return addend.addToBin(this); }
+
+    public ScNumber sub(ScNumber subtrahend) {
+        return subtrahend.subToBin(this);
+    }
+
+    public ScNumber mul(ScNumber product) {
+        return product.mulToBin(this);
+    }
+
+    public ScNumber div(ScNumber dividend) {
+        return dividend.divToBin(this);
+    }
+
+    /**
      * Binary operations with ints
      * @return ScBinary
      */
+    @Override
     public ScBinary addToInt(ScInt n) {
-        int val = binToInt(this.value) + n.value;
+        int val = n.value + binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
+    @Override
     public ScBinary subToInt(ScInt n) {
-        int val = binToInt(this.value) - n.value;
+        int val = n.value - binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
+    @Override
     public ScBinary mulToInt(ScInt n) {
-        int val = binToInt(this.value) * n.value;
+        int val = n.value * binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
+    @Override
     public ScBinary divToInt(ScInt n) {
-        int val = binToInt(this.value) / n.value;
+        int val = n.value / binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
@@ -169,22 +203,25 @@ public class ScBinary extends AbstractType implements BinaryOperand, ScNumber, L
      */
     @Override
     public ScBinary addToBin(ScBinary bin) {
-        int val = binToInt(this.value) + binToInt(bin.value);
+        int val = binToInt(bin.value) + binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
+    @Override
     public ScBinary subToBin(ScBinary bin) {
-        int val = binToInt(this.value) - binToInt(bin.value);
+        int val = binToInt(bin.value) - binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
+    @Override
     public ScBinary mulToBin(ScBinary bin) {
-        int val = binToInt(this.value) * binToInt(bin.value);
+        int val = binToInt(bin.value) * binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 
+    @Override
     public ScBinary divToBin(ScBinary bin) {
-        int val = binToInt(this.value) / binToInt(bin.value);
+        int val = binToInt(bin.value) / binToInt(this.value);
         return new ScBinary(intToBin(val));
     }
 

@@ -5,14 +5,14 @@ import files.types.ScString;
 import files.types.numbers.ScBinary;
 import files.types.numbers.ScFloat;
 import files.types.numbers.ScInt;
+import files.types.numbers.ScNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 
 import java.util.Random;
 
 import static files.types.numbers.BinaryToInt.intToBin;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author jaedango
@@ -27,8 +27,8 @@ public class BinaryScTest {
     protected Random r1 = new Random();
     protected Random r2 = new Random();
     protected Random r3 = new Random();
-    protected final int p1 = r1.nextInt() % 100;
-    protected final int p2 = r2.nextInt() % 100;
+    protected int p1 = r1.nextInt() % 100;
+    protected int p2 = r2.nextInt() % 100;
     protected final int p3 = r3.nextInt() % 100;
     protected String s1 = intToBin(p1);
     protected String s2 = intToBin(p2);
@@ -65,6 +65,13 @@ public class BinaryScTest {
         if (p3 != p1) {
             assertNotEquals(bin3, bin1);
         }
+    }
+
+    @RepeatedTest(100)
+    void getValueTest() {
+        assertEquals(bin1.getValue(), s1);
+        assertEquals(bin2.getValue(), s2);
+        assertEquals(bin3.getValue(), s3);
     }
 
     @RepeatedTest(100)
@@ -144,6 +151,75 @@ public class BinaryScTest {
     }
 
     @RepeatedTest(100)
+    void transformationScBinaryTest() {
+        ScBinary bin4 = bin1.toScBinary();
+        ScBinary bin5 = bin2.toScBinary();
+        ScBinary bin6 = bin3.toScBinary();
+        assertEquals(bin1, bin4);
+        assertEquals(bin2, bin5);
+        assertEquals(bin3, bin6);
+        assertEquals(bin1.hashCode(), bin4.hashCode(), "Hashes don't match");
+        assertEquals(bin2.hashCode(), bin5.hashCode(), "Hashes don't match");
+        assertEquals(bin3.hashCode(), bin6.hashCode(), "Hashes don't match");
+    }
+
+    @RepeatedTest(100)
+    void addScStringTest() {
+        ScString a = new ScString("a");
+        ScString b = new ScString("b");
+        ScString expected1 = new ScString(s1 + "a");
+        ScString expected2 = new ScString(s1 + "b");
+        ScString expected3 = new ScString(s2 + "a");
+        ScString expected4 = new ScString(s2 + "b");
+        ScString actual1 = bin1.addScString(a);
+        ScString actual2 = bin1.addScString(b);
+        ScString actual3 = bin2.addScString(a);
+        ScString actual4 = bin2.addScString(b);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
+    void andOrTest() {
+        var bool1 = new ScBoolean(true);
+        var bool2 = new ScBoolean(false);
+        StringBuilder zero1 = new StringBuilder();
+        StringBuilder ones1 = new StringBuilder();
+        StringBuilder zero2 = new StringBuilder();
+        StringBuilder ones2 = new StringBuilder();
+        for (int i=0; i<s1.length();i++) {
+            zero1.append('0');
+            ones1.append('1');
+        }
+        for (int j=0;j<s2.length();j++) {
+            zero2.append('0');
+            ones2.append('1');
+        }
+        ScBinary expected10 = new ScBinary(zero1.toString());
+        ScBinary expected11 = new ScBinary(ones1.toString());
+        ScBinary expected20 = new ScBinary(zero2.toString());
+        ScBinary expected21 = new ScBinary(ones2.toString());
+        ScBinary actual1 = (ScBinary) bin1.and(bool1);
+        ScBinary actual2 = (ScBinary) bin1.and(bool2);
+        ScBinary actual3 = (ScBinary) bin1.or(bool1);
+        ScBinary actual4 = (ScBinary) bin1.or(bool2);
+        ScBinary actual5 = (ScBinary) bin2.and(bool1);
+        ScBinary actual6 = (ScBinary) bin2.and(bool2);
+        ScBinary actual7 = (ScBinary) bin2.or(bool1);
+        ScBinary actual8 = (ScBinary) bin2.or(bool2);
+        assertEquals(bin1, actual1);
+        assertEquals(expected10, actual2);
+        assertEquals(expected11, actual3);
+        assertEquals(bin1, actual4);
+        assertEquals(bin2, actual5);
+        assertEquals(expected20, actual6);
+        assertEquals(expected21, actual7);
+        assertEquals(bin2, actual8);
+    }
+
+    @RepeatedTest(100)
     void andOrBooleanTest() {
         var bool1 = new ScBoolean(true);
         var bool2 = new ScBoolean(false);
@@ -182,6 +258,16 @@ public class BinaryScTest {
     }
 
     @RepeatedTest(100)
+    void andOrBinaryTest() {
+        assertNull(bin1.andBinary(bin2));
+        assertNull(bin2.andBinary(bin3));
+        assertNull(bin3.andBinary(bin1));
+        assertNull(bin1.orBinary(bin2));
+        assertNull(bin2.orBinary(bin3));
+        assertNull(bin3.orBinary(bin1));
+    }
+
+    @RepeatedTest(100)
     void addScIntTest() {
         int n1 = p1 + p3;
         int n2 = p2 - p3;
@@ -206,13 +292,37 @@ public class BinaryScTest {
     }
 
     @RepeatedTest(100)
+    void addIntTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        int expInt1 = p1 + n1;
+        int expInt2 = p1 + n2;
+        int expInt3 = p2 + n1;
+        int expInt4 = p2 + n2;
+        var var1 = new ScInt(n1);
+        var var2 = new ScInt(n2);
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) var1.add(bin1);
+        ScBinary actual2 = (ScBinary) var2.add(bin1);
+        ScBinary actual3 = (ScBinary) var1.add(bin2);
+        ScBinary actual4 = (ScBinary) var2.add(bin2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
     void subScIntTest() {
         int n1 = p1 + p3;
         int n2 = p2 - p3;
-        int expInt1 = p1 - n1;
-        int expInt2 = p1 - n2;
-        int expInt3 = p2 - n1;
-        int expInt4 = p2 - n2;
+        int expInt1 = n1 - p1;
+        int expInt2 = n2 - p1;
+        int expInt3 = n1 - p2;
+        int expInt4 = n2 - p2;
         var var1 = new ScInt(n1);
         var var2 = new ScInt(n2);
         ScBinary expected1 = new ScBinary(intToBin(expInt1));
@@ -223,6 +333,30 @@ public class BinaryScTest {
         ScBinary actual2 = bin1.subToInt(var2);
         ScBinary actual3 = bin2.subToInt(var1);
         ScBinary actual4 = bin2.subToInt(var2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
+    void subIntTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        int expInt1 = n1 - p1;
+        int expInt2 = n2 - p1;
+        int expInt3 = n1 - p2;
+        int expInt4 = n2 - p2;
+        var var1 = new ScInt(n1);
+        var var2 = new ScInt(n2);
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) var1.sub(bin1);
+        ScBinary actual2 = (ScBinary) var2.sub(bin1);
+        ScBinary actual3 = (ScBinary) var1.sub(bin2);
+        ScBinary actual4 = (ScBinary) var2.sub(bin2);
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
         assertEquals(expected3, actual3);
@@ -254,19 +388,45 @@ public class BinaryScTest {
     }
 
     @RepeatedTest(100)
+    void mulIntTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        int expInt1 = p1 * n1;
+        int expInt2 = p1 * n2;
+        int expInt3 = p2 * n1;
+        int expInt4 = p2 * n2;
+        var var1 = new ScInt(n1);
+        var var2 = new ScInt(n2);
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) var1.mul(bin1);
+        ScBinary actual2 = (ScBinary) var2.mul(bin1);
+        ScBinary actual3 = (ScBinary) var1.mul(bin2);
+        ScBinary actual4 = (ScBinary) var2.mul(bin2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
     void divScIntTest() {
         int n1 = p1 + p3;
         int n2 = p2 - p3;
-        if (n1 == 0) {
-            n1 += 2;
+        if (p1 == 0) {
+            p1 = 2;
+            bin1 = new ScBinary(intToBin(p1));
         }
-        if (n2 == 0) {
-            n2 += 2;
+        if (p2 == 0) {
+            p2 = 2;
+            bin2 = new ScBinary(intToBin(p2));
         }
-        int expInt1 = p1 / n1;
-        int expInt2 = p1 / n2;
-        int expInt3 = p2 / n1;
-        int expInt4 = p2 / n2;
+        int expInt1 = n1 / p1;
+        int expInt2 = n2 / p1;
+        int expInt3 = n1 / p2;
+        int expInt4 = n2 / p2;
         var var1 = new ScInt(n1);
         var var2 = new ScInt(n2);
         ScBinary expected1 = new ScBinary(intToBin(expInt1));
@@ -277,6 +437,38 @@ public class BinaryScTest {
         ScBinary actual2 = bin1.divToInt(var2);
         ScBinary actual3 = bin2.divToInt(var1);
         ScBinary actual4 = bin2.divToInt(var2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
+    void divIntTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        if (p1 == 0) {
+            p1 = 2;
+            bin1 = new ScBinary(intToBin(p1));
+        }
+        if (p2 == 0) {
+            p2 = 2;
+            bin2 = new ScBinary(intToBin(p2));
+        }
+        int expInt1 = n1 / p1;
+        int expInt2 = n2 / p1;
+        int expInt3 = n1 / p2;
+        int expInt4 = n2 / p2;
+        var var1 = new ScInt(n1);
+        var var2 = new ScInt(n2);
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) var1.div(bin1);
+        ScBinary actual2 = (ScBinary) var2.div(bin1);
+        ScBinary actual3 = (ScBinary) var1.div(bin2);
+        ScBinary actual4 = (ScBinary) var2.div(bin2);
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
         assertEquals(expected3, actual3);
@@ -308,7 +500,55 @@ public class BinaryScTest {
     }
 
     @RepeatedTest(100)
+    void addBinaryTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        int expInt1 = p1 + n1;
+        int expInt2 = p1 + n2;
+        int expInt3 = p2 + n1;
+        int expInt4 = p2 + n2;
+        var var1 = new ScBinary(intToBin(n1));
+        var var2 = new ScBinary(intToBin(n2));
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) bin1.add(var1);
+        ScBinary actual2 = (ScBinary) bin1.add(var2);
+        ScBinary actual3 = (ScBinary) bin2.add(var1);
+        ScBinary actual4 = (ScBinary) bin2.add(var2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
     void subScBinaryTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        int expInt1 = n1 - p1;
+        int expInt2 = n2 - p1;
+        int expInt3 = n1 - p2;
+        int expInt4 = n2 - p2;
+        var var1 = new ScBinary(intToBin(n1));
+        var var2 = new ScBinary(intToBin(n2));
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = bin1.subToBin(var1);
+        ScBinary actual2 = bin1.subToBin(var2);
+        ScBinary actual3 = bin2.subToBin(var1);
+        ScBinary actual4 = bin2.subToBin(var2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
+    void subBinaryTest() {
         int n1 = p1 + p3;
         int n2 = p2 - p3;
         int expInt1 = p1 - n1;
@@ -321,10 +561,10 @@ public class BinaryScTest {
         ScBinary expected2 = new ScBinary(intToBin(expInt2));
         ScBinary expected3 = new ScBinary(intToBin(expInt3));
         ScBinary expected4 = new ScBinary(intToBin(expInt4));
-        ScBinary actual1 = bin1.subToBin(var1);
-        ScBinary actual2 = bin1.subToBin(var2);
-        ScBinary actual3 = bin2.subToBin(var1);
-        ScBinary actual4 = bin2.subToBin(var2);
+        ScBinary actual1 = (ScBinary) bin1.sub(var1);
+        ScBinary actual2 = (ScBinary) bin1.sub(var2);
+        ScBinary actual3 = (ScBinary) bin2.sub(var1);
+        ScBinary actual4 = (ScBinary) bin2.sub(var2);
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
         assertEquals(expected3, actual3);
@@ -356,6 +596,30 @@ public class BinaryScTest {
     }
 
     @RepeatedTest(100)
+    void mulBinaryTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        int expInt1 = p1 * n1;
+        int expInt2 = p1 * n2;
+        int expInt3 = p2 * n1;
+        int expInt4 = p2 * n2;
+        var var1 = new ScBinary(intToBin(n1));
+        var var2 = new ScBinary(intToBin(n2));
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) bin1.mul(var1);
+        ScBinary actual2 = (ScBinary) bin1.mul(var2);
+        ScBinary actual3 = (ScBinary) bin2.mul(var1);
+        ScBinary actual4 = (ScBinary) bin2.mul(var2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
     void divScBinaryTest() {
         int n1 = p1 + p3;
         int n2 = p2 - p3;
@@ -375,14 +639,156 @@ public class BinaryScTest {
         ScBinary expected2 = new ScBinary(intToBin(expInt2));
         ScBinary expected3 = new ScBinary(intToBin(expInt3));
         ScBinary expected4 = new ScBinary(intToBin(expInt4));
-        ScBinary actual1 = bin1.divToBin(var1);
-        ScBinary actual2 = bin1.divToBin(var2);
-        ScBinary actual3 = bin2.divToBin(var1);
-        ScBinary actual4 = bin2.divToBin(var2);
+        ScBinary actual1 = var1.divToBin(bin1);
+        ScBinary actual2 = var2.divToBin(bin1);
+        ScBinary actual3 = var1.divToBin(bin2);
+        ScBinary actual4 = var2.divToBin(bin2);
         assertEquals(expected1, actual1);
         assertEquals(expected2, actual2);
         assertEquals(expected3, actual3);
         assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
+    void divBinaryTest() {
+        int n1 = p1 + p3;
+        int n2 = p2 - p3;
+        if (n1 == 0) {
+            n1 += 2;
+        }
+        if (n2 == 0) {
+            n2 += 2;
+        }
+        int expInt1 = p1 / n1;
+        int expInt2 = p1 / n2;
+        int expInt3 = p2 / n1;
+        int expInt4 = p2 / n2;
+        var var1 = new ScBinary(intToBin(n1));
+        var var2 = new ScBinary(intToBin(n2));
+        ScBinary expected1 = new ScBinary(intToBin(expInt1));
+        ScBinary expected2 = new ScBinary(intToBin(expInt2));
+        ScBinary expected3 = new ScBinary(intToBin(expInt3));
+        ScBinary expected4 = new ScBinary(intToBin(expInt4));
+        ScBinary actual1 = (ScBinary) bin1.div(var1);
+        ScBinary actual2 = (ScBinary) bin1.div(var2);
+        ScBinary actual3 = (ScBinary) bin2.div(var1);
+        ScBinary actual4 = (ScBinary) bin2.div(var2);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
+        assertEquals(expected3, actual3);
+        assertEquals(expected4, actual4);
+    }
+
+    @RepeatedTest(100)
+    void addScFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScFloat actual1 = bin1.addToFloat(f1);
+        ScFloat actual2 = bin1.addToFloat(f2);
+        ScFloat actual3 = bin2.addToFloat(f1);
+        ScFloat actual4 = bin2.addToFloat(f2);
+        assertNull(actual1);
+        assertNull(actual2);
+        assertNull(actual3);
+        assertNull(actual4);
+    }
+
+    @RepeatedTest(100)
+    void addFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScNumber actual1 = f1.add(bin1);
+        ScNumber actual2 = f2.add(bin1);
+        ScNumber actual3 = f1.add(bin2);
+        ScNumber actual4 = f2.add(bin2);
+        assertNull(actual1);
+        assertNull(actual2);
+        assertNull(actual3);
+        assertNull(actual4);
+    }
+
+    @RepeatedTest(100)
+    void subScFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScFloat expected1 = bin1.subToFloat(f1);
+        ScFloat expected2 = bin1.subToFloat(f2);
+        ScFloat expected3 = bin2.subToFloat(f1);
+        ScFloat expected4 = bin2.subToFloat(f2);
+        assertNull(expected1);
+        assertNull(expected2);
+        assertNull(expected3);
+        assertNull(expected4);
+    }
+
+    @RepeatedTest(100)
+    void subFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScNumber actual1 = f1.sub(bin1);
+        ScNumber actual2 = f2.sub(bin1);
+        ScNumber actual3 = f1.sub(bin2);
+        ScNumber actual4 = f2.sub(bin2);
+        assertNull(actual1);
+        assertNull(actual2);
+        assertNull(actual3);
+        assertNull(actual4);
+    }
+
+    @RepeatedTest(100)
+    void mulScFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScFloat expected1 = bin1.mulToFloat(f1);
+        ScFloat expected2 = bin1.mulToFloat(f2);
+        ScFloat expected3 = bin2.mulToFloat(f1);
+        ScFloat expected4 = bin2.mulToFloat(f2);
+        assertNull(expected1);
+        assertNull(expected2);
+        assertNull(expected3);
+        assertNull(expected4);
+    }
+
+    @RepeatedTest(100)
+    void mulFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScNumber actual1 = f1.mul(bin1);
+        ScNumber actual2 = f2.mul(bin1);
+        ScNumber actual3 = f1.mul(bin2);
+        ScNumber actual4 = f2.mul(bin2);
+        assertNull(actual1);
+        assertNull(actual2);
+        assertNull(actual3);
+        assertNull(actual4);
+    }
+
+    @RepeatedTest(100)
+    void divScFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScFloat expected1 = bin1.divToFloat(f1);
+        ScFloat expected2 = bin1.divToFloat(f2);
+        ScFloat expected3 = bin2.divToFloat(f1);
+        ScFloat expected4 = bin2.divToFloat(f2);
+        assertNull(expected1);
+        assertNull(expected2);
+        assertNull(expected3);
+        assertNull(expected4);
+    }
+
+    @RepeatedTest(100)
+    void divFloatTest() {
+        ScFloat f1 = new ScFloat(r1.nextFloat());
+        ScFloat f2 = new ScFloat(r2.nextFloat());
+        ScNumber actual1 = f1.div(bin1);
+        ScNumber actual2 = f2.div(bin1);
+        ScNumber actual3 = f1.div(bin2);
+        ScNumber actual4 = f2.div(bin2);
+        assertNull(actual1);
+        assertNull(actual2);
+        assertNull(actual3);
+        assertNull(actual4);
     }
 }
 

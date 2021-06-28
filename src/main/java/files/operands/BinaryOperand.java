@@ -11,18 +11,6 @@ import files.types.numbers.ScNumber;
 
 public interface BinaryOperand {
     /**
-     * Binary Ops : add (+), subs (-), multiply (*), divide (/)
-     * @return new ScBinary
-     */
-    ScNumber addToBin(ScBinary addend);
-
-    ScNumber subToBin(ScBinary substrate);
-
-    ScNumber mulToBin(ScBinary product);
-
-    ScNumber divToBin(ScBinary dividend);
-
-    /**
      * to cast a binary as other type
      */
     ScInt toScInt();

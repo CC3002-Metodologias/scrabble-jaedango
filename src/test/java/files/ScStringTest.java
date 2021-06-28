@@ -60,6 +60,13 @@ public class ScStringTest {
         }
     }
 
+    @RepeatedTest(100)
+    void toScStringTest() {
+        ScString expected1 = str1.toScString();
+        ScString expected2 = str2.toScString();
+        assertEquals(str1, expected1);
+        assertEquals(str2, expected2);
+    }
 
     @RepeatedTest(100)
     void addScStringTest() {

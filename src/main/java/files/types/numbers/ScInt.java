@@ -51,82 +51,117 @@ public class ScInt extends AbstractType implements BinaryOperand, ScNumber {
     /**
      * Method to transform ScInt into other classes
      */
+    @Override
     public ScString toScString() {
         return new ScString(String.valueOf(this.value));
     }
 
+    @Override
     public ScFloat toScFloat() {
         return new ScFloat((float) this.value);
     }
 
+    @Override
     public ScBinary toScBinary() {
         return new ScBinary(intToBin(this.value));
     }
 
+    @Override
     public ScInt toScInt() { return new ScInt(this.value); }
+
+    /**
+     * Basic Operations
+     */
+    public ScNumber add(ScNumber addend) {
+        return addend.addToInt(this);
+    }
+
+    public ScNumber sub(ScNumber subtrahend) {
+        return subtrahend.subToInt(this);
+    }
+
+    public ScNumber mul(ScNumber product) {
+        return product.mulToInt(this);
+    }
+
+    public ScNumber div(ScNumber dividend) {
+        return dividend.divToInt(this);
+    }
 
     /**
      * Methods '+', '-', '*', '/' to operate with ScFloat
      * @return ScFloat
      */
+    @Override
     public ScFloat addToFloat(ScFloat fl) {
-        return new ScFloat((float) this.value + fl.value);
+        return new ScFloat(fl.value + (float) this.value);
     }
 
+    @Override
     public ScFloat subToFloat(ScFloat fl) {
-        return new ScFloat((float) this.value - fl.value);
+        return new ScFloat(fl.value - (float) this.value);
     }
 
+    @Override
     public ScFloat mulToFloat(ScFloat fl) {
-        return new ScFloat((float) this.value * fl.value);
+        return new ScFloat(fl.value * (float) this.value);
     }
 
+    @Override
     public ScFloat divToFloat(ScFloat fl) {
-        return new ScFloat((float) this.value / fl.value);
+        return new ScFloat(fl.value / (float) this.value);
     }
 
     /**
      * Methods '+', '-', '*', '/' to operate with other ScInt
      * @return ScInt
      */
+    @Override
     public ScInt addToInt(ScInt n) {
-        return new ScInt(this.value + n.value);
+        return new ScInt(n.value + this.value);
     }
 
+    @Override
     public ScInt subToInt(ScInt n) {
-        return new ScInt(this.value - n.value);
+        return new ScInt(n.value - this.value);
     }
 
+    @Override
     public ScInt mulToInt(ScInt n) {
-        return new ScInt(this.value * n.value);
+        return new ScInt(n.value * this.value);
     }
 
+    @Override
     public ScInt divToInt(ScInt n) {
-        return new ScInt(this.value / n.value);
+        return new ScInt(n.value / this.value);
     }
 
     /**
      * Methods '+', '-', '*', '/' to operate with ScBinary
      * @return ScInt
      */
+    @Override
     public ScInt addToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(this.value + n);
+        return new ScInt(n + this.value);
     }
 
+    @Override
     public ScInt subToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(this.value - n);
+        return new ScInt(n - this.value);
     }
 
+    @Override
     public ScInt mulToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(this.value * n);
+        return new ScInt(n * this.value);
     }
 
+    @Override
     public ScInt divToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(this.value / n);
+        return new ScInt(n / this.value);
     }
 
 }
