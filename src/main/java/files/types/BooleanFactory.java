@@ -1,7 +1,5 @@
 package files.types;
 
-import files.types.ScBoolean;
-
 import java.util.Hashtable;
 
 /**
@@ -27,5 +25,4 @@ public class BooleanFactory {
         }
         return bool;
     }
-
 }

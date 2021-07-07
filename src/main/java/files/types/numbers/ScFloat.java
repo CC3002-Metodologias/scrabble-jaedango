@@ -54,22 +54,26 @@ public class ScFloat implements ScNumber {
 
     public ScFloat toScFloat() { return new ScFloat(this.value); }
 
+    public ScInt toScInt() {
+        return null;
+    }
+
     /**
      * Basic Operations
      */
-    public ScNumber add(ScNumber addend) {
+    public ScFloat add(ScNumber addend) {
         return addend.addToFloat(this);
     }
 
-    public ScNumber sub(ScNumber subtrahend) {
+    public ScFloat sub(ScNumber subtrahend) {
         return subtrahend.subToFloat(this);
     }
 
-    public ScNumber mul(ScNumber product) {
+    public ScFloat mul(ScNumber product) {
         return product.mulToFloat(this);
     }
 
-    public ScNumber div(ScNumber dividend) {
+    public ScFloat div(ScNumber dividend) {
         return dividend.divToFloat(this);
     }
 
