@@ -1,23 +1,216 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>files.ScStringTest</OriginalElement>
+  <OriginalElement>/home/jaedango/U-2021-1/Metodologias/nose/scrabble-jaedango/src/main/java/files</OriginalElement>
   <nodes>
-    <node x="-193.0" y="101.5">files.BinaryToInt</node>
-    <node x="-362.0" y="-132.0">files.ScInt</node>
-    <node x="4.0" y="-132.0">files.ScBoolean</node>
-    <node x="-377.0" y="-21.5">files.ScFloat</node>
-    <node x="-202.0" y="-132.0">files.ScString</node>
-    <node x="-386.0" y="89.0">files.ScBinary</node>
+    <node x="677.2233796296297" y="420.0">files.types.numbers.ScNumber</node>
+    <node x="876.8421052631578" y="166.0">files.operations.constant.ConstantNum</node>
+    <node x="0.0" y="603.0">files.exceptions.WrongValueException</node>
+    <node x="94.0" y="249.0">files.operations.ops.LogicOps.And</node>
+    <node x="749.0" y="603.0">files.types.StringFactory</node>
+    <node x="199.99999999999997" y="249.0">files.operations.ops.NumOps.Add</node>
+    <node x="200.76315789473682" y="83.0">files.operations.ops.Operations</node>
+    <node x="519.0" y="603.0">files.types.numbers.NumberFactory</node>
+    <node x="425.2631578947368" y="0.0">files.operations.Ops</node>
+    <node x="446.7858796296297" y="420.0">files.operands.BinaryOperand</node>
+    <node x="0.0" y="525.0">files.types.ScBoolean</node>
+    <node x="199.3125" y="525.0">files.types.ScString</node>
+    <node x="100.15277777777777" y="420.0">files.operands.Logical</node>
+    <node x="0.0" y="681.0">files.types.numbers.BinaryToInt</node>
+    <node x="706.5833333333334" y="525.0">files.types.numbers.ScFloat</node>
+    <node x="514.0" y="249.0">files.operations.ops.NumOps.Div</node>
+    <node x="342.3125" y="525.0">files.types.numbers.ScBinary</node>
+    <node x="0.0" y="249.0">files.operations.ops.LogicOps.Or</node>
+    <node x="721.5" y="83.0">files.operations.constant.Constant</node>
+    <node x="314.8421052631578" y="166.0">files.operations.ops.NumOps.NumOps</node>
+    <node x="288.0" y="603.0">files.types.BooleanFactory</node>
+    <node x="260.7858796296297" y="420.0">files.types.AbstractType</node>
+    <node x="673.8421052631578" y="166.0">files.operations.constant.ConstantString</node>
+    <node x="21.0" y="166.0">files.operations.ops.LogicOps.LogicOps</node>
+    <node x="461.8421052631578" y="166.0">files.operations.constant.ConstantLogical</node>
+    <node x="591.5833333333334" y="525.0">files.types.numbers.ScInt</node>
+    <node x="306.0" y="249.0">files.operations.ops.NumOps.Sub</node>
+    <node x="333.90277777777777" y="327.0">files.types.ScType</node>
+    <node x="410.0" y="249.0">files.operations.ops.NumOps.Mul</node>
   </nodes>
   <notes />
-  <edges />
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="80.0" y="42.5" />
+  <edges>
+    <edge source="files.types.numbers.ScInt" target="files.types.numbers.ScNumber" relationship="REALIZATION">
+      <point x="31.66666666666663" y="-16.5" />
+      <point x="670.75" y="474.0" />
+      <point x="747.2233796296297" y="474.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.Operations" target="files.operations.Ops" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="274.7631578947368" y="58.0" />
+      <point x="468.2631578947368" y="58.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operands.Logical" target="files.types.ScType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="156.65277777777777" y="390.0" />
+      <point x="478.4166666666667" y="390.0" />
+      <point x="478.4166666666667" y="380.0" />
+      <point x="417.90277777777777" y="380.0" />
+      <point x="28.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.NumOps.Add" target="files.operations.ops.NumOps.NumOps" relationship="GENERALIZATION">
+      <point x="2.8421709430404007E-14" y="-16.5" />
+      <point x="243.0" y="224.0" />
+      <point x="378.3421052631578" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.LogicOps.And" target="files.operations.ops.LogicOps.LogicOps" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="137.0" y="224.0" />
+      <point x="87.0" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScFloat" target="files.types.numbers.ScNumber" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="764.0833333333334" y="474.0" />
+      <point x="747.2233796296297" y="474.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.AbstractType" target="files.types.ScType" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="343.7858796296297" y="400.0" />
+      <point x="202.90277777777777" y="400.0" />
+      <point x="202.90277777777777" y="380.0" />
+      <point x="361.90277777777777" y="380.0" />
+      <point x="-28.0" y="16.5" />
+    </edge>
+    <edge source="files.types.ScBoolean" target="files.types.ScType" relationship="REALIZATION">
+      <point x="-35.25" y="-16.5" />
+      <point x="35.25" y="504.0" />
+      <point x="38.75" y="504.0" />
+      <point x="38.75" y="400.0" />
+      <point x="202.90277777777777" y="400.0" />
+      <point x="202.90277777777777" y="380.0" />
+      <point x="361.90277777777777" y="380.0" />
+      <point x="-28.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.constant.ConstantNum" target="files.operations.constant.Constant" relationship="REALIZATION">
+      <point x="1.1368683772161603E-13" y="-16.5" />
+      <point x="962.8421052631579" y="141.0" />
+      <point x="787.0" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.ScString" target="files.types.AbstractType" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="260.8125" y="494.0" />
+      <point x="343.7858796296297" y="494.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScBinary" target="files.types.AbstractType" relationship="GENERALIZATION">
+      <point x="-15.625" y="-16.5" />
+      <point x="389.1875" y="494.0" />
+      <point x="343.7858796296297" y="494.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.ScBoolean" target="files.operands.Logical" relationship="REALIZATION">
+      <point x="35.25" y="-16.5" />
+      <point x="105.75" y="504.0" />
+      <point x="156.65277777777777" y="504.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScBinary" target="files.types.numbers.ScNumber" relationship="REALIZATION">
+      <point x="46.875" y="-16.5" />
+      <point x="451.6875" y="474.0" />
+      <point x="747.2233796296297" y="474.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScNumber" target="files.types.ScType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="747.2233796296297" y="390.0" />
+      <point x="478.4166666666667" y="390.0" />
+      <point x="478.4166666666667" y="380.0" />
+      <point x="417.90277777777777" y="380.0" />
+      <point x="28.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.constant.ConstantString" target="files.operations.constant.Constant" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="765.3421052631578" y="141.0" />
+      <point x="787.0" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.LogicOps.Or" target="files.operations.ops.LogicOps.LogicOps" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="37.0" y="224.0" />
+      <point x="87.0" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScBinary" target="files.operands.BinaryOperand" relationship="REALIZATION">
+      <point x="15.625" y="-16.5" />
+      <point x="420.4375" y="484.0" />
+      <point x="537.2858796296297" y="484.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.NumOps.NumOps" target="files.operations.ops.Operations" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="378.3421052631578" y="141.0" />
+      <point x="274.7631578947368" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScInt" target="files.operands.BinaryOperand" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="639.0833333333334" y="484.0" />
+      <point x="537.2858796296297" y="484.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScBinary" target="files.operands.Logical" relationship="REALIZATION">
+      <point x="-46.875" y="-16.5" />
+      <point x="357.9375" y="504.0" />
+      <point x="156.65277777777777" y="504.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.NumOps.Sub" target="files.operations.ops.NumOps.NumOps" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="348.0" y="224.0" />
+      <point x="378.3421052631578" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.NumOps.Mul" target="files.operations.ops.NumOps.NumOps" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="452.0" y="224.0" />
+      <point x="378.3421052631578" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.constant.Constant" target="files.operations.Ops" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="787.0" y="58.0" />
+      <point x="468.2631578947368" y="58.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.NumOps.Div" target="files.operations.ops.NumOps.NumOps" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="553.5" y="224.0" />
+      <point x="378.3421052631578" y="224.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.types.numbers.ScInt" target="files.types.AbstractType" relationship="GENERALIZATION">
+      <point x="-31.66666666666663" y="-16.5" />
+      <point x="607.4166666666667" y="494.0" />
+      <point x="343.7858796296297" y="494.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.ops.LogicOps.LogicOps" target="files.operations.ops.Operations" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="87.0" y="141.0" />
+      <point x="274.7631578947368" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="files.operations.constant.ConstantLogical" target="files.operations.constant.Constant" relationship="REALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="557.8421052631578" y="141.0" />
+      <point x="787.0" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7574931880108992" showDependencies="false" x="524.5" y="357.0" />
   <SelectedNodes />
-  <Categories>
-    <Category>Constructors</Category>
-    <Category>Fields</Category>
-  </Categories>
+  <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

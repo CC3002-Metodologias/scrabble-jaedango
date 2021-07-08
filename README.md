@@ -11,7 +11,7 @@ _CC3002 Metodologías de Diseño y programación_ of the
 [_Computer Sciences Department (DCC)_](https://www.dcc.uchile.cl) of the 
 _University of Chile_.
 
----
+----------------------
 At this moment, this don't do anything :(  
 We are working to merge everything, but we have functional classes :D  
 Actual classes:  
@@ -20,3 +20,17 @@ Actual classes:
 	- ScFloat 	: Scrabble type Float, receives a floating point number.  
 	- ScBoolean : Scrabble type Boolean, receives only 'true' and 'false' values.  
 	- ScString 	: Scrabble type String, receives any String.
+
+Now added a Factory method for the classes showed above (Expecting use less memory to store data).  
+Added new ways to use the next Operations  :  
+	- Add (+)  
+	- Sub (-)  
+	- Mul (*)  
+	- Div (/)  
+And boolean Operations:  
+	- And (&&)  
+	- Or  (||)  
+
+Now we use prefix notation, example:  
+(+ 3 5) = 8  
+(- 6 3) = 3
