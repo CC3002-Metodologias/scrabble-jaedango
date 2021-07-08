@@ -1,9 +1,12 @@
 package files.operations.constant;
 
 import files.types.ScString;
-import files.types.ScType;
 
 import java.util.Objects;
+
+/**
+ * @author jaedango
+ */
 
 public class ConstantString implements Constant {
     ScString value;
@@ -12,11 +15,17 @@ public class ConstantString implements Constant {
         this.value = val1;
     }
 
+    /**
+     * return String constant
+     */
     @Override
     public ScString getValue() {
         return this.value;
     }
 
+    /**
+     * Methods Override to print and assert equals
+     */
     @Override
     public String toString() {
         return this.value.toString();

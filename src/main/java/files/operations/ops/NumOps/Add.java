@@ -18,6 +18,11 @@ public class Add extends NumOps{
     Constant val1;
     Constant val2;
 
+    /**
+     * Class Constructors
+     * @param val1 -> Constant or Operation
+     * @param val2 -> Constant or Operation
+     */
     public Add(Constant val1, Constant val2) {
         this.val1 = val1;
         this.val2 = val2;
@@ -38,6 +43,9 @@ public class Add extends NumOps{
         this.val2 = val2.eval();
     }
 
+    /**
+     * Methods Override to print and assert equals
+     */
     @Override
     public int hashCode() {
         return Objects.hash(Add.class, this.val1, this.val2);
@@ -57,6 +65,10 @@ public class Add extends NumOps{
         return "(" + val1.toString() + " + " + val2.toString() + ")";
     }
 
+    /**
+     * Eval expression value
+     * @return new Constant number or String
+     */
     @Override
     public Constant eval() {
         if (this.val1.getValue() instanceof ScNumber && this.val2.getValue() instanceof ScNumber) {

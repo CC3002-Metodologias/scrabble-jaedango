@@ -5,6 +5,10 @@ import files.types.numbers.ScNumber;
 
 import java.util.Objects;
 
+/**
+ * @author jaedango
+ */
+
 public class ConstantNum implements Constant {
     ScNumber value;
 
@@ -12,10 +16,17 @@ public class ConstantNum implements Constant {
         this.value = val;
     }
 
+    /**
+     * @return Constant Number
+     */
     @Override
     public ScType getValue() {
         return this.value;
     }
+
+    /**
+     * Methods Override to print and assert equals
+     */
 
     @Override
     public String toString() {

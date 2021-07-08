@@ -15,6 +15,11 @@ public class Or extends LogicOps{
     Constant val1;
     Constant val2;
 
+    /**
+     * Constant Constructors
+     * @param val1 -> Constant or Operations
+     * @param val2 -> Constant or Operations
+     */
     public Or(Constant val1, Constant val2) {
         this.val1 = val1;
         this.val2 = val2;
@@ -35,6 +40,9 @@ public class Or extends LogicOps{
         this.val2 = (ConstantLogical) val2.eval();
     }
 
+    /**
+     * Methods Override to print and assert equals
+     */
     @Override
     public int hashCode() {
         return Objects.hash(Or.class, this.val1, this.val2);
@@ -54,6 +62,10 @@ public class Or extends LogicOps{
         return "(" + val1.toString() + " or " + val2.toString() + ")";
     }
 
+    /**
+     * Eval expression value
+     * @return new Logical value
+     */
     @Override
     public Constant eval() {
         Logical v1 = (Logical) this.val1.getValue();

@@ -1,9 +1,12 @@
 package files.operations.constant;
 
 import files.operands.Logical;
-import files.types.ScBoolean;
 
 import java.util.Objects;
+
+/**
+ * @author jaedango
+ */
 
 public class ConstantLogical implements Constant {
     Logical value;
@@ -12,11 +15,17 @@ public class ConstantLogical implements Constant {
         this.value = val1;
     }
 
+    /**
+     * @return Logical constant value
+     */
     @Override
     public Logical getValue() {
         return this.value;
     }
 
+    /**
+     * Methods Override to print and assert equals
+     */
     @Override
     public String toString() {
         return this.value.toString();
