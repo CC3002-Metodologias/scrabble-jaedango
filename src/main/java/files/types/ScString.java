@@ -51,11 +51,20 @@ public class ScString extends AbstractType {
     }
 
     /**
+     * Add to a ScString
+     * @param val -> addend
+     * @return new ScString with (val + this)
+     */
+    public ScString add(ScType val) {
+        return val.addScString(this);
+    }
+
+    /**
      * Method to concatenate ScString with other ScString
      * @return ScString
      */
     public ScString addScString(ScString str) {
-        return new ScString(this.value + str.value);
+        return new ScString(str.value + this.value);
     }
 
     /**
@@ -63,7 +72,7 @@ public class ScString extends AbstractType {
      * @return ScString
      */
     public ScString addScBool(ScBoolean bool) {
-        return new ScString(this.value + bool.toString());
+        return new ScString(bool.toString() + this.value);
     }
 
     /**
@@ -71,7 +80,7 @@ public class ScString extends AbstractType {
      * @return ScString
      */
     public ScString addScFloat(ScFloat fl) {
-        return new ScString(this.value + fl.toString());
+        return new ScString(fl.toString() + this.value);
     }
 
     /**
@@ -79,7 +88,7 @@ public class ScString extends AbstractType {
      * @return ScString
      */
     public ScString addScInt(ScInt n) {
-        return new ScString(this.value + n.toString());
+        return new ScString(n.toString() + this.value);
     }
 
     /**
@@ -87,7 +96,7 @@ public class ScString extends AbstractType {
      * @return ScString
      */
     public ScString addScBinary(ScBinary bin) {
-        return new ScString(this.value + bin.toString());
+        return new ScString(bin.toString() + this.value);
     }
 
 }
