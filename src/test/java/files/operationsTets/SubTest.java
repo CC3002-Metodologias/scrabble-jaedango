@@ -4,7 +4,6 @@ import files.operations.constant.Constant;
 import files.operations.constant.ConstantFactory;
 import files.operations.constant.ConstantNum;
 import files.operations.ops.NumOps.Sub;
-import files.types.StringFactory;
 import files.types.numbers.NumberFactory;
 import files.types.numbers.ScBinary;
 import files.types.numbers.ScFloat;

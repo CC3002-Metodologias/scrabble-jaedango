@@ -1,7 +1,6 @@
 package files.constantTest;
 
 import files.operations.constant.*;
-import files.operations.ops.NumOps.Add;
 import files.types.BooleanFactory;
 import files.types.ScBoolean;
 import files.types.ScString;
@@ -18,6 +17,7 @@ import java.util.Random;
 
 import static files.types.numbers.BinaryToInt.intToBin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ConstantTest {
     StringFactory s = new StringFactory();
@@ -93,17 +93,90 @@ public class ConstantTest {
         cBool2 = c.cLog(bool2);
     }
 
+    // ConstantLogical
     @RepeatedTest(100)
-    void ConstructorTest() {
-        var expected1 = c.cNum(n.getScInt(num1 + num2));
-        var expected2 = c.cNum(n.getScBinary(intToBin(num1 + num3)));
-        var expected3 = c.cNum(n.getScFloat((float) num1 + float1));
-        Constant actual1 = new Add(cn1, cn2).eval();
-        Constant actual2 = new Add(cn1, cb1).eval();
-        Constant actual3 = new Add(cn1, cf1).eval();
-        assertEquals(expected1, actual1);
-        assertEquals(expected2, actual2);
-        assertEquals(expected3, actual3);
+    void logicalTest1() {
+        var expected1 = new ConstantLogical(b.getScBoolean(boolean1));
+        var expected2 = new ConstantLogical(b.getScBoolean(boolean2));
+        var expected3 = new ConstantLogical(n.getScBinary(binary1));
+        var expected4 = new ConstantLogical(n.getScBinary(binary2));
+        var expected5 = new ConstantNum(n.getScBinary(binary1));
+        var expected6 = new ConstantNum(n.getScBinary(binary2));
+        assertEquals(expected1, cBool1);
+        assertEquals(expected2, cBool2);
+        assertNotEquals(expected3, cb1);
+        assertNotEquals(expected4, cb2);
+        assertEquals(expected5, cb1);
+        assertEquals(expected6, cb2);
+        assertEquals(expected1.hashCode(), cBool1.hashCode());
+        assertEquals(expected2.hashCode(), cBool2.hashCode());
+        assertEquals(expected5.hashCode(), cb1.hashCode());
+        assertEquals(expected6.hashCode(), cb2.hashCode());
     }
 
+    @RepeatedTest(100)
+    void logicalTest2() {
+        assertEquals(bool1, cBool1.getValue());
+        assertEquals(bool2, cBool2.getValue());
+        assertEquals(String.valueOf(boolean1), cBool1.toString());
+        assertEquals(String.valueOf(boolean2), cBool2.toString());
+    }
+
+    // ConstantString
+    @RepeatedTest(100)
+    void stringTest1() {
+        var expected1 = new ConstantString(new ScString(string1));
+        var expected2 = new ConstantString(new ScString(string2));
+        assertEquals(expected1, cs1);
+        assertEquals(expected2, cs2);
+        assertNotEquals(expected1, cs2);
+        assertNotEquals(expected2, cs1);
+        assertEquals(expected1.hashCode(), cs1.hashCode());
+        assertEquals(expected2.hashCode(), cs2.hashCode());
+        assertEquals(s1, cs1.getValue());
+        assertEquals(s2, cs2.getValue());
+        assertEquals(string1, cs1.toString());
+        assertEquals(string2, cs2.toString());
+    }
+
+    // ConstantNum
+    @RepeatedTest(100)
+    void numTest() {
+        var expected1 = new ConstantNum(new ScInt(num1));
+        var expected2 = new ConstantNum(new ScInt(num2));
+        var expected3 = new ConstantNum(new ScFloat(float1));
+        var expected4 = new ConstantNum(new ScFloat(float2));
+        var expected5 = new ConstantNum(new ScBinary(binary1));
+        var expected6 = new ConstantNum(new ScBinary(binary2));
+        assertEquals(expected1, cn1);
+        assertEquals(expected2, cn2);
+        assertEquals(expected3, cf1);
+        assertEquals(expected4, cf2);
+        assertEquals(expected5, cb1);
+        assertEquals(expected6, cb2);
+        assertNotEquals(expected2, cn1);
+        assertNotEquals(expected1, cn2);
+        assertNotEquals(expected4, cf1);
+        assertNotEquals(expected3, cf2);
+        assertNotEquals(expected6, cb1);
+        assertNotEquals(expected5, cb2);
+        assertEquals(expected1.hashCode(), cn1.hashCode());
+        assertEquals(expected2.hashCode(), cn2.hashCode());
+        assertEquals(expected3.hashCode(), cf1.hashCode());
+        assertEquals(expected4.hashCode(), cf2.hashCode());
+        assertEquals(expected5.hashCode(), cb1.hashCode());
+        assertEquals(expected6.hashCode(), cb2.hashCode());
+        assertEquals(n1, cn1.getValue());
+        assertEquals(n2, cn2.getValue());
+        assertEquals(f1, cf1.getValue());
+        assertEquals(f2, cf2.getValue());
+        assertEquals(b1, cb1.getValue());
+        assertEquals(b2, cb2.getValue());
+        assertEquals(String.valueOf(num1), cn1.toString());
+        assertEquals(String.valueOf(num2), cn2.toString());
+        assertEquals(String.valueOf(float1), cf1.toString());
+        assertEquals(String.valueOf(float2), cf2.toString());
+        assertEquals(binary1, cb1.toString());
+        assertEquals(binary2, cb2.toString());
+    }
 }
