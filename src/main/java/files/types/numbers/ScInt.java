@@ -45,7 +45,7 @@ public class ScInt extends AbstractType implements BinaryOperand, ScNumber {
     }
 
     public ScString addScString(ScString addend) {
-        return new ScString(this.toString() + addend.toString());
+        return new ScString(addend.toString() + this.toString());
     }
 
     /**
@@ -141,27 +141,27 @@ public class ScInt extends AbstractType implements BinaryOperand, ScNumber {
      * @return ScInt
      */
     @Override
-    public ScInt addToBin(ScBinary bin) {
+    public ScBinary addToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(n + this.value);
+        return new ScBinary(intToBin(n + this.value));
     }
 
     @Override
-    public ScInt subToBin(ScBinary bin) {
+    public ScBinary subToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(n - this.value);
+        return new ScBinary(intToBin(n - this.value));
     }
 
     @Override
-    public ScInt mulToBin(ScBinary bin) {
+    public ScBinary mulToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(n * this.value);
+        return new ScBinary(intToBin(n * this.value));
     }
 
     @Override
-    public ScInt divToBin(ScBinary bin) {
+    public ScBinary divToBin(ScBinary bin) {
         int n = binToInt(bin.value);
-        return new ScInt(n / this.value);
+        return new ScBinary(intToBin(n / this.value));
     }
 
 }

@@ -40,27 +40,12 @@ public class And extends LogicOps {
         this.val2 = (ConstantLogical) val2.eval();
     }
 
-    /**
-     * Methods Override to print and assert equals
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(And.class, this.val1, this.val2);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof And) {
-            var other = (And) obj;
-            return val1.equals(other.val1) && val2.equals(other.val2);
-        }
-        return false;
-    }
-
+    /*
     @Override
     public String toString() {
         return "(" + val1.toString() + " & " + val2.toString() + ")";
     }
+    */
 
     /**
      * Eval expression value

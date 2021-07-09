@@ -42,10 +42,10 @@ public class Add extends NumOps{
         this.val1 = val1.eval();
         this.val2 = val2.eval();
     }
-
+/*
     /**
      * Methods Override to print and assert equals
-     */
+
     @Override
     public int hashCode() {
         return Objects.hash(Add.class, this.val1, this.val2);
@@ -64,7 +64,7 @@ public class Add extends NumOps{
     public String toString() {
         return "(" + val1.toString() + " + " + val2.toString() + ")";
     }
-
+*/
     /**
      * Eval expression value
      * @return new Constant number or String

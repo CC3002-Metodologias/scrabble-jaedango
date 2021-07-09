@@ -1,4 +1,4 @@
-package files;
+package files.typesTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,10 +60,10 @@ public class ScBooleanTest {
         String a2 = "b";
         ScString a = new ScString("a");
         ScString b = new ScString("b");
-        var expected1 = new ScString(String.valueOf(t) + a1);
-        var expected2 = new ScString(String.valueOf(t) + a2);
-        var expected3 = new ScString(String.valueOf(f) + a1);
-        var expected4 = new ScString(String.valueOf(f) + a2);
+        var expected1 = new ScString(a1 + t);
+        var expected2 = new ScString(a2 + t);
+        var expected3 = new ScString(a1 + f);
+        var expected4 = new ScString(a2 + f);
         ScString actual1 = bool1.addScString(a);
         ScString actual2 = bool1.addScString(b);
         ScString actual3 = bool2.addScString(a);

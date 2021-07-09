@@ -19,7 +19,7 @@ public class ScFloat implements ScNumber {
     }
 
     public ScString addScString(ScString addend) {
-        return new ScString(this.toString() + addend.toString());
+        return new ScString(addend.toString() + this.toString());
     }
 
     /**

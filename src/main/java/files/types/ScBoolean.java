@@ -22,7 +22,7 @@ public class ScBoolean implements ScType, Logical {
     }
 
     public ScString addScString(ScString addend) {
-        return new ScString (this + addend.toString());
+        return new ScString (addend.toString() + this);
     }
 
     /**

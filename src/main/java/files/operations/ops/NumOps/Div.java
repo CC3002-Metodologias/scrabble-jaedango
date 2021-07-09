@@ -39,10 +39,10 @@ public class Div extends NumOps{
         this.val1 = (ConstantNum) val1.eval();
         this.val2 = (ConstantNum) val2.eval();
     }
-
+/*
     /**
      * Methods Override to print and assert equals
-     */
+
     @Override
     public int hashCode() {
         return Objects.hash(Div.class, this.val1, this.val2);
@@ -61,7 +61,7 @@ public class Div extends NumOps{
     public String toString() {
         return "(" + val1.toString() + " / " + val2.toString() + ")";
     }
-
+*/
     /**
      * Eval expression value
      * @return new Constant number

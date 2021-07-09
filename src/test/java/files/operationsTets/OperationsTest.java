@@ -1,4 +1,4 @@
-package files;
+package files.operationsTets;
 
 import files.operations.constant.ConstantLogical;
 import files.operations.constant.ConstantNum;

@@ -1,4 +1,4 @@
-package files;
+package files.typesTest;
 
 import files.types.ScString;
 import files.types.numbers.ScBinary;
@@ -10,8 +10,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import java.util.Random;
 
 import static files.types.numbers.BinaryToInt.intToBin;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author jaedango
@@ -97,15 +96,25 @@ public class ScFloatTest {
     }
 
     @RepeatedTest(100)
+    void trasformScIntTest() {
+        var null1 = float1.toScInt();
+        var null2 = float2.toScInt();
+        var null3 = float3.toScInt();
+        assertNull(null1);
+        assertNull(null2);
+        assertNull(null3);
+    }
+
+    @RepeatedTest(100)
     void addScStringTest() {
         String a = "a";
         String b = "b";
         ScString a1 = new ScString(a);
         ScString a2 = new ScString(b);
-        ScString expected1 = new ScString(String.valueOf(f1) + a);
-        ScString expected2 = new ScString(String.valueOf(f1) + b);
-        ScString expected3 = new ScString(String.valueOf(f2) + a);
-        ScString expected4 = new ScString(String.valueOf(f2) + b);
+        ScString expected1 = new ScString(a + f1);
+        ScString expected2 = new ScString(b + f1);
+        ScString expected3 = new ScString(a + f2);
+        ScString expected4 = new ScString(b + f2);
         ScString actual1 = float1.addScString(a1);
         ScString actual2 = float1.addScString(a2);
         ScString actual3 = float2.addScString(a1);

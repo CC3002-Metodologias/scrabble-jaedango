@@ -40,9 +40,10 @@ public class Sub extends NumOps{
         this.val2 = (ConstantNum) val2.eval();
     }
 
+/*
     /**
      * Methods Override to print and assert equals
-     */
+
     @Override
     public int hashCode() {
         return Objects.hash(Sub.class, this.val1, this.val2);
@@ -61,7 +62,7 @@ public class Sub extends NumOps{
     public String toString() {
         return "(" + val1.toString() + " - " + val2.toString() + ")";
     }
-
+*/
     /**
      * Eval expression value
      * @return new Constant number
@@ -70,6 +71,6 @@ public class Sub extends NumOps{
     public Constant eval() {
         ScNumber v1 = (ScNumber) this.val1.getValue();
         ScNumber v2 = (ScNumber) this.val2.getValue();
-        return new ConstantNum(v1.div(v2));
+        return new ConstantNum(v1.sub(v2));
     }
 }

@@ -1,4 +1,4 @@
-package files;
+package files.typesTest;
 
 import files.types.BooleanFactory;
 import files.types.ScBoolean;

@@ -1,4 +1,4 @@
-package files;
+package files.typesTest;
 
 
 import org.junit.jupiter.api.Test;

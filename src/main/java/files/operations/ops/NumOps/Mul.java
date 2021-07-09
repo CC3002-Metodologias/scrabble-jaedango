@@ -21,29 +21,30 @@ public class Mul extends NumOps{
      * @param val1 -> Constant or Operation
      * @param val2 -> Constant or Operation
      */
-    public Mul(Constant val1, ConstantLogical val2) {
+    public Mul(Constant val1, Constant val2) {
         this.val1 = val1;
         this.val2 = val2;
     }
 
     public Mul(Constant val1, Operations val2) {
         this.val1 = val1;
-        this.val2 = (ConstantNum) val2.eval();
+        this.val2 = val2.eval();
     }
 
     public Mul(Operations val1, Constant val2) {
-        this.val1 = (ConstantNum) val1.eval();
+        this.val1 = val1.eval();
         this.val2 = val2;
     }
 
     public Mul(Operations val1, Operations val2) {
-        this.val1 = (ConstantNum) val1.eval();
-        this.val2 = (ConstantNum) val2.eval();
+        this.val1 = val1.eval();
+        this.val2 = val2.eval();
     }
 
+/*
     /**
      * Methods Override to print and assert equals
-     */
+
     @Override
     public int hashCode() {
         return Objects.hash(Mul.class, this.val1, this.val2);
@@ -62,7 +63,7 @@ public class Mul extends NumOps{
     public String toString() {
         return "(" + val1.toString() + " * " + val2.toString() + ")";
     }
-
+*/
     /**
      * Eval expression value
      * @return new Constant number
