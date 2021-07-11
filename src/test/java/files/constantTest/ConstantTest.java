@@ -1,11 +1,8 @@
 package files.constantTest;
 
 import files.operations.constant.*;
-import files.types.BooleanFactory;
 import files.types.ScBoolean;
 import files.types.ScString;
-import files.types.StringFactory;
-import files.types.numbers.NumberFactory;
 import files.types.numbers.ScBinary;
 import files.types.numbers.ScFloat;
 import files.types.numbers.ScInt;
@@ -20,9 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ConstantTest {
-    StringFactory s = new StringFactory();
-    NumberFactory n = new NumberFactory();
-    BooleanFactory b = new BooleanFactory();
     ConstantFactory c = new ConstantFactory();
     ScInt n1, n2;
     ScFloat f1, f2;
@@ -51,8 +45,8 @@ public class ConstantTest {
         // ScInt
         num1 = r0.nextInt() % 5000;
         num2 = r1.nextInt() % 5000;
-        n1 = n.getScInt(num1);
-        n2 = n.getScInt(num2);
+        n1 = new ScInt(num1);
+        n2 = new ScInt(num2);
         cn1 = c.cNum(n1);
         cn2 = c.cNum(n2);
         // Binary
@@ -60,8 +54,8 @@ public class ConstantTest {
         num4 = r3.nextInt() % 5000;
         binary1 = intToBin(num3);
         binary2 = intToBin(num4);
-        b1 = n.getScBinary(binary1);
-        b2 = n.getScBinary(binary2);
+        b1 = new ScBinary(binary1);
+        b2 = new ScBinary(binary2);
         cb1 = c.cNum(b1);
         cb2 = c.cNum(b2);
         // String
@@ -73,22 +67,22 @@ public class ConstantTest {
         new Random().nextBytes(arr2);
         string1 = new String(arr1, StandardCharsets.UTF_8);
         string2 = new String(arr2, StandardCharsets.UTF_8);
-        s1 = s.getScString(string1);
-        s2 = s.getScString(string2);
+        s1 = new ScString(string1);
+        s2 = new ScString(string2);
         cs1 = c.cStr(s1);
         cs2 = c.cStr(s2);
         // Float
         float1 = r6.nextFloat();
         float2 = r7.nextFloat();
-        f1 = n.getScFloat(float1);
-        f2 = n.getScFloat(float2);
+        f1 = new ScFloat(float1);
+        f2 = new ScFloat(float2);
         cf1 = c.cNum(f1);
         cf2 = c.cNum(f2);
         // Bool
         boolean1 = true;
         boolean2 = false;
-        bool1 = b.getScBoolean(boolean1);
-        bool2 = b.getScBoolean(boolean2);
+        bool1 = new ScBoolean(boolean1);
+        bool2 = new ScBoolean(boolean2);
         cBool1 = c.cLog(bool1);
         cBool2 = c.cLog(bool2);
     }
@@ -96,12 +90,12 @@ public class ConstantTest {
     // ConstantLogical
     @RepeatedTest(100)
     void logicalTest1() {
-        var expected1 = new ConstantLogical(b.getScBoolean(boolean1));
-        var expected2 = new ConstantLogical(b.getScBoolean(boolean2));
-        var expected3 = new ConstantLogical(n.getScBinary(binary1));
-        var expected4 = new ConstantLogical(n.getScBinary(binary2));
-        var expected5 = new ConstantNum(n.getScBinary(binary1));
-        var expected6 = new ConstantNum(n.getScBinary(binary2));
+        var expected1 = new ConstantLogical(new ScBoolean(boolean1));
+        var expected2 = new ConstantLogical(new ScBoolean(boolean2));
+        var expected3 = new ConstantLogical(new ScBinary(binary1));
+        var expected4 = new ConstantLogical(new ScBinary(binary2));
+        var expected5 = new ConstantNum(new ScBinary(binary1));
+        var expected6 = new ConstantNum(new ScBinary(binary2));
         assertEquals(expected1, cBool1);
         assertEquals(expected2, cBool2);
         assertNotEquals(expected3, cb1);
@@ -112,14 +106,20 @@ public class ConstantTest {
         assertEquals(expected2.hashCode(), cBool2.hashCode());
         assertEquals(expected5.hashCode(), cb1.hashCode());
         assertEquals(expected6.hashCode(), cb2.hashCode());
-    }
-
-    @RepeatedTest(100)
-    void logicalTest2() {
         assertEquals(bool1, cBool1.getValue());
         assertEquals(bool2, cBool2.getValue());
         assertEquals(String.valueOf(boolean1), cBool1.toString());
         assertEquals(String.valueOf(boolean2), cBool2.toString());
+    }
+
+    @RepeatedTest(100)
+    void logicalTest2() {
+        var expected1 = new ConstantLogical(new ScBoolean(boolean1));
+        var expected2 = new ConstantLogical(new ScBoolean(boolean2));
+        ConstantLogical actual1 = c.cLog(true);
+        ConstantLogical actual2 = c.cLog(false);
+        assertEquals(expected1, actual1);
+        assertEquals(expected2, actual2);
     }
 
     // ConstantString

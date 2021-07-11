@@ -1,14 +1,11 @@
 package files.operations.ops.NumOps;
 
-import files.exceptions.WrongValueException;
 import files.operations.constant.Constant;
 import files.operations.constant.ConstantNum;
 import files.operations.constant.ConstantString;
 import files.operations.ops.Operations;
 import files.types.ScString;
 import files.types.numbers.ScNumber;
-
-import java.util.Objects;
 
 /**
  * @author jaedango
