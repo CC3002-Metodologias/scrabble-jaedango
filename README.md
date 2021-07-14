@@ -34,3 +34,6 @@ And boolean Operations:
 Now we use prefix notation, example:  
 (+ 3 5) = 8  
 (- 6 3) = 3
+
+Added variables to the project, now you can define and modify variables.  
+Variables can be: int, float, bin, boolean or strings.
