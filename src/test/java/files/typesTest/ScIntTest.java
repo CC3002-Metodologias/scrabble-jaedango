@@ -67,6 +67,13 @@ public class ScIntTest {
     }
 
     @RepeatedTest(100)
+    void getValueTest() {
+        assertEquals(n1, int1.getValue());
+        assertEquals(n2, int2.getValue());
+        assertEquals(n3, int3.getValue());
+    }
+
+    @RepeatedTest(100)
     void transformScString() {
         ScString expectedScString1 = new ScString(String.valueOf(n1));
         ScString expectedScString2 = new ScString(String.valueOf(n2));

@@ -61,6 +61,13 @@ public class ScFloatTest {
     }
 
     @RepeatedTest(100)
+    void getValueTest() {
+        assertEquals(f1, float1.getValue());
+        assertEquals(f2, float2.getValue());
+        assertEquals(f3, float3.getValue());
+    }
+
+    @RepeatedTest(100)
     void transformationScString() {
         var expectedScString1 = new ScString(String.valueOf(f1));
         var expectedScString2 = new ScString(String.valueOf(f2));

@@ -44,9 +44,8 @@ public class ifTest {
 
     @Test
     void compareToTest() {
-        assertEquals(cn4, new If((new CompareTo(cn1, cn2)).eval() >= 1, new Add(cn1, cn2), new Sub(cn1, cn2)).eval());
+        assertEquals(cn3, new If((new CompareTo(cn1, cn2)).eval() == 1, new Add(cn1, cn2), new Sub(cn1, cn2)).eval());
         assertEquals(cn4, new If((new CompareTo(cn1, cn2)).eval() == 0, new Add(cn1, cn2), new Sub(cn1, cn2)).eval());
-        assertEquals(cn3, new If((new CompareTo(cn1, cn2)).eval() <= -1, new Add(cn1, cn2), new Sub(cn1, cn2)).eval());
-        System.out.println((new CompareTo(cn1, cn2)).eval());
+        assertEquals(cn4, new If((new CompareTo(cn1, cn2)).eval() == -1, new Add(cn1, cn2), new Sub(cn1, cn2)).eval());
     }
 }

@@ -1,7 +1,10 @@
 package files.controlFlow;
 
 import files.operations.constant.ConstantNum;
+import files.types.numbers.ScFloat;
+import files.types.numbers.ScInt;
 import files.types.numbers.ScNumber;
+
 
 public class CompareTo {
     ConstantNum val1;
@@ -15,7 +18,33 @@ public class CompareTo {
     public int eval() {
         ScNumber num1 = (ScNumber) this.val1.getValue();
         ScNumber num2 = (ScNumber) this.val2.getValue();
-        return num1.toString().compareTo(num2.toString());
+
+        float val1, val2;
+
+        if (num1.toScInt() != null) {
+            ScInt scInt = num1.toScInt();
+            val1 = (float) scInt.getValue();
+        } else {
+            ScFloat scFloat = (ScFloat) num1;
+            val1 = scFloat.getValue();
+        }
+        if (num2.toScInt() != null) {
+            ScInt scInt = num2.toScInt();
+            val2 = (float) scInt.getValue();
+        } else {
+            ScFloat scFloat = (ScFloat) num2;
+            val2 = scFloat.getValue();
+        }
+
+        if (val1 > val2) {
+            return 1;
+        } else {
+            if (val1 == val2) {
+                return 0;
+            } else {
+                return -1;
+            }
+        }
 
     }
 }

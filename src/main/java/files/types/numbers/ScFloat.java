@@ -22,6 +22,10 @@ public class ScFloat implements ScNumber {
         return new ScString(addend.toString() + this.toString());
     }
 
+    public float getValue() {
+        return this.value;
+    }
+
     /**
      * ScFloat getter Method
      * @return String with ScFloat Value
