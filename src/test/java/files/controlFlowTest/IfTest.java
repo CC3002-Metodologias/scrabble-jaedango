@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ifTest {
+public class IfTest {
     ConstantFactory c = new ConstantFactory();
     int int1, int2, int3, int4;
     boolean bool1, bool2;

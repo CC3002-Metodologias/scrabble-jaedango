@@ -21,6 +21,9 @@ public class ScInt extends AbstractType implements BinaryOperand, ScNumber {
         this.value = n;
     }
 
+    /**
+     * @return integer value
+     */
     public int getValue() {
         return this.value;
     }

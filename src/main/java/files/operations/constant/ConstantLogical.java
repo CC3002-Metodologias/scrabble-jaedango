@@ -24,6 +24,14 @@ public class ConstantLogical implements Constant {
     }
 
     /**
+     * @return Constant Value
+     */
+    @Override
+    public ConstantLogical eval() {
+        return this;
+    }
+
+    /**
      * Methods Override to print and assert equals
      */
     @Override

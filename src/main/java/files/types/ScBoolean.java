@@ -17,6 +17,9 @@ public class ScBoolean implements ScType, Logical {
         this.value = val;
     }
 
+    /**
+     * @return boolean value
+     */
     public boolean getValue() {
         return this.value;
     }

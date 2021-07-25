@@ -1,6 +1,8 @@
 package files.operations.constant;
 
 import files.operands.Logical;
+import files.operations.Ops;
+import files.operations.ops.Operations;
 import files.types.ScBoolean;
 import files.types.ScString;
 import files.types.ScType;
@@ -12,7 +14,7 @@ import files.types.numbers.ScNumber;
 import java.util.Hashtable;
 
 public class ConstantFactory {
-    private Hashtable<String, Constant> hashTable = new Hashtable<>();
+    private Hashtable<String, Ops> hashTable = new Hashtable<>();
 
     /**
      * ConstantNum Factory
@@ -139,5 +141,55 @@ public class ConstantFactory {
         }
         return constantLogical;
     }
+
+    // Variables
+
+    /**
+     * Variables values -> can be String, float, int, binary or boolean
+     * @param name -> String representing the variable name
+     * @param value -> Value of the variable
+     */
+    public ConstantNum variable(String name, int value) {
+        ConstantNum constantNum = new ConstantNum(new ScInt(value));
+        hashTable.put(name, constantNum);
+        return constantNum;
+    }
+
+    public ConstantNum variable(String name, float value) {
+        ConstantNum constantNum = new ConstantNum(new ScFloat(value));
+        hashTable.put(name, constantNum);
+        return constantNum;
+    }
+
+    public Constant variable(String name, String value) {
+        if (value.matches("^[01]+$")) {
+            ConstantNum constantNum = new ConstantNum(new ScBinary(value));
+            hashTable.put(name, constantNum);
+            return constantNum;
+        }
+        else {
+            ConstantString constantString = new ConstantString(new ScString(value));
+            hashTable.put(name, constantString);
+            return constantString;
+        }
+    }
+
+    public ConstantLogical variable(String name, boolean value) {
+        ConstantLogical constantLogical = new ConstantLogical(new ScBoolean(value));
+        hashTable.put(name, constantLogical);
+        return constantLogical;
+    }
+
+    public Ops variable(String name) {
+        return hashTable.get(name);
+    }
+
+    public Operations variable(String name, Operations value) {
+        Operations operations = value;
+        hashTable.put(name, value.eval());
+        return operations;
+    }
+
+
 
 }

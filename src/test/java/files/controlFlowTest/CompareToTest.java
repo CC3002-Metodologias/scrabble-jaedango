@@ -131,6 +131,26 @@ public class CompareToTest {
         assertEquals(lesser, new CompareTo(cf1, cn1).eval());
     }
 
+    @Test
+    void CompareBinFloatTest() {
+        assertEquals(lesser, new CompareTo(cb3, cf3).eval());
+        assertEquals(greater, new CompareTo(cb3, cf2).eval());
+        assertEquals(greater, new CompareTo(cb3, cf1).eval());
+        assertEquals(lesser, new CompareTo(cb2, cf3).eval());
+        assertEquals(equal, new CompareTo(cb2, cf2).eval());
+        assertEquals(greater, new CompareTo(cb2, cf1).eval());
+        assertEquals(lesser, new CompareTo(cb1, cf3).eval());
+        assertEquals(lesser, new CompareTo(cb1, cf2).eval());
+        assertEquals(greater, new CompareTo(cb1, cf1).eval());
 
-
+        assertEquals(greater, new CompareTo(cf3, cb3).eval());
+        assertEquals(greater, new CompareTo(cf3, cb2).eval());
+        assertEquals(greater, new CompareTo(cf3, cb1).eval());
+        assertEquals(lesser, new CompareTo(cf2, cb3).eval());
+        assertEquals(equal, new CompareTo(cf2, cb2).eval());
+        assertEquals(greater, new CompareTo(cf2, cb1).eval());
+        assertEquals(lesser, new CompareTo(cf1, cb3).eval());
+        assertEquals(lesser, new CompareTo(cf1, cb2).eval());
+        assertEquals(lesser, new CompareTo(cf1, cb1).eval());
+    }
 }

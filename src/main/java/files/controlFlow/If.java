@@ -6,6 +6,10 @@ import files.operations.constant.ConstantLogical;
 import files.operations.ops.Operations;
 import files.types.ScBoolean;
 
+/**
+ * @author jaedango
+ */
+
 public class If implements Control {
     ConstantLogical condition;
     Operations ifTrue;
@@ -23,6 +27,9 @@ public class If implements Control {
         this.ifFalse = ifFalse;
     }
 
+    /**
+     * @return left argument if true, right argument if false
+     */
     @Override
     public Ops eval() {
         ScBoolean scBoolean = (ScBoolean) condition.getValue();

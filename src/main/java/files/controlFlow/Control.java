@@ -2,6 +2,10 @@ package files.controlFlow;
 
 import files.operations.Ops;
 
-public interface Control {
+/**
+ * @author jaedango
+ */
+
+public interface Control extends Ops {
     public Ops eval();
 }

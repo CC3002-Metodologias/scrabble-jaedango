@@ -25,6 +25,14 @@ public class ConstantNum implements Constant {
     }
 
     /**
+     * @return Constant Value
+     */
+    @Override
+    public ConstantNum eval() {
+        return this;
+    }
+
+    /**
      * Methods Override to print and assert equals
      */
 

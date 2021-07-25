@@ -5,6 +5,9 @@ import files.types.numbers.ScFloat;
 import files.types.numbers.ScInt;
 import files.types.numbers.ScNumber;
 
+/**
+ * @author jaedango
+ */
 
 public class CompareTo {
     ConstantNum val1;
@@ -15,6 +18,10 @@ public class CompareTo {
         this.val2 = val2;
     }
 
+    /**
+     * Compare two ConstantNum
+     * @return 1 if val1 > val2, 0 if val1 == val2, -1 if val1 < val2
+     */
     public int eval() {
         ScNumber num1 = (ScNumber) this.val1.getValue();
         ScNumber num2 = (ScNumber) this.val2.getValue();
