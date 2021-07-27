@@ -1,5 +1,6 @@
 package files.operations.ops.NumOps;
 
+import files.operations.Ops;
 import files.operations.constant.Constant;
 import files.operations.constant.ConstantLogical;
 import files.operations.constant.ConstantNum;
@@ -13,8 +14,8 @@ import java.util.Objects;
  */
 
 public class Mul extends NumOps{
-    Constant val1;
-    Constant val2;
+    Ops val1;
+    Ops val2;
 
     /**
      * Class Constructors
@@ -28,17 +29,17 @@ public class Mul extends NumOps{
 
     public Mul(Constant val1, Operations val2) {
         this.val1 = val1;
-        this.val2 = val2.eval();
+        this.val2 = val2;
     }
 
     public Mul(Operations val1, Constant val2) {
-        this.val1 = val1.eval();
+        this.val1 = val1;
         this.val2 = val2;
     }
 
     public Mul(Operations val1, Operations val2) {
-        this.val1 = val1.eval();
-        this.val2 = val2.eval();
+        this.val1 = val1;
+        this.val2 = val2;
     }
 
 /*
@@ -70,8 +71,10 @@ public class Mul extends NumOps{
      */
     @Override
     public Constant eval() {
-        ScNumber v1 = (ScNumber) this.val1.getValue();
-        ScNumber v2 = (ScNumber) this.val2.getValue();
+        Constant num1 = (Constant) this.val1.eval();
+        Constant num2 = (Constant) this.val2.eval();
+        ScNumber v1 = (ScNumber) num1.getValue();
+        ScNumber v2 = (ScNumber) num2.getValue();
         return new ConstantNum(v1.mul(v2));
     }
 }

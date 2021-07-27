@@ -185,9 +185,9 @@ public class ConstantFactory {
     }
 
     public Operations variable(String name, Operations value) {
-        Operations operations = value;
-        hashTable.put(name, value.eval());
-        return operations;
+        Constant operations = value.eval();
+        hashTable.put(name, operations);
+        return value;
     }
 
 

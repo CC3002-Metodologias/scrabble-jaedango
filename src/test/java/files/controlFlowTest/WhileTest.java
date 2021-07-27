@@ -2,12 +2,21 @@ package files.controlFlowTest;
 
 import files.controlFlow.CompareTo;
 import files.controlFlow.While;
+import files.controlFlow.While2;
+import files.controlFlow.While3;
+import files.operations.Ops;
 import files.operations.constant.Constant;
 import files.operations.constant.ConstantFactory;
 import files.operations.constant.ConstantNum;
 import files.operations.ops.NumOps.Add;
+import files.operations.ops.NumOps.Mul;
 import files.operations.ops.Operations;
+import files.types.ScType;
 import org.junit.jupiter.api.Test;
+
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class WhileTest {
     ConstantFactory c = new ConstantFactory();
@@ -19,6 +28,7 @@ public class WhileTest {
 
     }*/
 
+    /*
     @Test
     void whileTest1() {
         ConstantNum var = c.variable("a", 0);
@@ -48,6 +58,8 @@ public class WhileTest {
             i++;
         }
         System.out.println(c.variable("a"));
+        */
+
         /*
         ConstantNum var = c.variable("a", 0);
         System.out.println(var.getValue());
@@ -62,20 +74,114 @@ public class WhileTest {
         // Check while
 
         */
-    }
+    //}
 
+    /*
     @Test
     void whileTest2() {
-        c.variable("b", 0);
-        ConstantNum num1 = c.cNum(1);
+        c.variable("b", 1);
+        ConstantNum num2 = c.cNum(2);
+        new While2(c.variable("b", new Mul((Constant) c.variable("b"), num2)));
+
         System.out.println("b=0 :" + c.variable("b"));
-        Operations op1 = c.variable("b", new Add((Constant) c.variable("b"), num1));
+        Operations op1 = c.variable("b", new Mul((Constant) c.variable("b"), num2));
         System.out.println("operation 1 = " + op1);
         System.out.println("op1 eval : " + op1.eval());
         System.out.println("b=1 :" + c.variable("b"));
         Operations op2 = op1;
+        System.out.println(c.variable("b", new Mul((Constant) c.variable("b"), num2)));
         System.out.println("ops2 = op1,eval : " + op2.eval());
-        new While(true, c.variable("b", new Add((Constant) c.variable("b"), c.cNum(1)))).val();
+        new While(true, c.variable("b", new Mul((Constant) c.variable("b"), c.cNum(2)))).val();
+
+
+    } */
+
+    /*
+    @Test
+    void test3() {
+        ConstantNum l = c.cNum(1);
+        ConstantNum var1 = c.variable("a", 1);
+        System.out.println(var1.eval());
+        Operations var2 = c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)));
+        System.out.println(var1.eval());
+        Ops h = var2::eval;
+        System.out.println(h.eval());
+        System.out.println(h.eval());
+        Ops g = var1::eval;
+        System.out.println(g.eval());
+
+
+        System.out.println();
+        System.out.println("no se que esta pasando");
+        System.out.println("variable : " + ((Constant) c.variable("a")).getValue());
+        Runnable variable = () -> c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)));
+        System.out.println(variable);
+        variable.run();
+        variable.run();
+        variable.run();
+        System.out.println(c.variable("a"));
     }
+    */
+
+
+    @Test
+    void noseTest() {
+        c.variable("a", 0);
+        Operations ops = c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)));
+        Supplier variable = () -> ops;
+        variable.get();
+        variable.get();
+        System.out.println(c.variable("a"));
+
+        //Runnable runnable = () -> ops;
+        //runnable.run();
+        //runnable.run();
+        //System.out.println(c.variable("a"));
+
+        Function<Operations,Constant> function = Operations::eval;
+
+        function.apply(ops);
+        System.out.println(ops.eval());
+
+        function.apply(ops);
+        System.out.println(ops.eval());
+
+        Consumer<Operations> consumer = name -> c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)));
+
+        // System.out.println(consumer.accept(new Add(c.cNum(1), c.cNum(2))));
+
+        System.out.println(c.variable("a"));
+        System.out.println("while :");
+        new While2(c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)))).eval();
+        System.out.println(c.variable("a"));
+
+        System.out.println("while3 : ");
+        new While3(c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)))).eval();
+
+        Supplier<Operations> supplier2= () -> c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)));
+        supplier2.get();
+        System.out.println(supplier2.get().eval());
+        System.out.println(supplier2.get().eval());
+
+        System.out.println();
+        System.out.println("intento3");
+        Operations operations = c.variable("a", new Add((Constant) c.variable("a"), c.cNum(1)));
+        Supplier<Operations> supplier3 = () -> operations;
+        supplier3.get();
+        System.out.println(supplier3.get().eval());
+        System.out.println(supplier3.get().eval());
+
+        System.out.println();
+        System.out.println("otro intento");
+        c.variable("b", 2);
+        Mul mul = new Mul((Constant) c.variable("b"), c.cNum(2));
+        System.out.println(mul.eval());
+        Operations opxd = c.variable("b", mul);
+        System.out.println(opxd.eval());
+        Supplier<Operations> supplierxd = () -> opxd;
+        System.out.println(supplierxd.get().eval());
+        System.out.println(supplierxd.get().eval());
+    }
+
 
 }
