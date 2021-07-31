@@ -1,5 +1,9 @@
 package files.types;
 
+/**
+ * @author jaedango
+ */
+
 public interface ScType {
     /**
      * cast this as ScString

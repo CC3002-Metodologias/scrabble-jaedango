@@ -1,5 +1,9 @@
 package files.types;
 
+/**
+ * @author jaedango
+ */
+
 public abstract class AbstractType implements ScType {
     /**
      * appends ScString at the end of another ScString

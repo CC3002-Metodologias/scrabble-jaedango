@@ -3,13 +3,16 @@ package files.operations.constant;
 import files.operands.Logical;
 import files.types.ScBoolean;
 import files.types.ScString;
-import files.types.ScType;
 import files.types.numbers.ScBinary;
 import files.types.numbers.ScFloat;
 import files.types.numbers.ScInt;
 import files.types.numbers.ScNumber;
 
 import java.util.Hashtable;
+
+/**
+ * @author jaedango
+ */
 
 public class ConstantFactory {
     private Hashtable<String, Constant> hashTable = new Hashtable<>();
