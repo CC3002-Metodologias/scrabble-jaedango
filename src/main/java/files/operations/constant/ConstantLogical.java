@@ -1,6 +1,7 @@
 package files.operations.constant;
 
 import files.operands.Logical;
+import files.visitor.Visitor;
 
 import java.util.Objects;
 
@@ -10,9 +11,16 @@ import java.util.Objects;
 
 public class ConstantLogical implements Constant {
     Logical value;
+    String name;
 
     public ConstantLogical(Logical val1) {
         this.value = val1;
+        this.name = val1.toString() + "cLog";
+    }
+
+    public ConstantLogical(Logical val1, String name) {
+        this.value = val1;
+        this.name = name;
     }
 
     /**
@@ -21,6 +29,14 @@ public class ConstantLogical implements Constant {
     @Override
     public Logical getValue() {
         return this.value;
+    }
+
+    /**
+     * @return String name
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -52,5 +68,12 @@ public class ConstantLogical implements Constant {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Visitor module
+     */
+    public void accept(Visitor visitor) {
+        visitor.visitConstant(this);
     }
 }

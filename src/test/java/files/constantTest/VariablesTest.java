@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VariablesTest {
     ConstantFactory c = new ConstantFactory();
+    VariableFactory v = new VariableFactory();
     // Java Natives
     int num1, num2, num3, num4, num5, num6;
     float float1, float2;
@@ -52,8 +53,8 @@ public class VariablesTest {
         scInt2 = new ScInt(num2);
         sNum1 = "num1";
         sNum2 = "num2";
-        cn1 = c.variable(sNum1, num1);
-        cn2 = c.variable(sNum2, num2);
+        cn1 = v.variable(sNum1, num1);
+        cn2 = v.variable(sNum2, num2);
         // Binary
         num3 = r2.nextInt() % 5000;
         num4 = r3.nextInt() % 5000;
@@ -61,8 +62,8 @@ public class VariablesTest {
         binary2 = intToBin(num4);
         sBin1 = "bin1";
         sBin2 = "bin2";
-        cBin1 = c.variable(sBin1, binary1);
-        cBin2 = c.variable(sBin2, binary2);
+        cBin1 = v.variable(sBin1, binary1);
+        cBin2 = v.variable(sBin2, binary2);
         // Float
         float1 = r4.nextFloat();
         float2 = r5.nextFloat();
@@ -70,8 +71,8 @@ public class VariablesTest {
         scFloat2 = new ScFloat(float2);
         sFl1 = "float1";
         sFl2 = "float2";
-        cf1 = c.variable(sFl1, float1);
-        cf2 = c.variable(sFl2, float2);
+        cf1 = v.variable(sFl1, float1);
+        cf2 = v.variable(sFl2, float2);
         // Bool
         bool1 = true;
         bool2 = false;
@@ -79,8 +80,8 @@ public class VariablesTest {
         scBoolean2 = new ScBoolean(bool2);
         sBool1 = "bool1";
         sBool2 = "bool2";
-        cBool1 = c.variable(sBool1, bool1);
-        cBool2 = c.variable(sBool2, bool2);
+        cBool1 = v.variable(sBool1, bool1);
+        cBool2 = v.variable(sBool2, bool2);
         // String
         num5 = r6.nextInt() % 7;
         num6 = r7.nextInt() % 7;
@@ -94,8 +95,8 @@ public class VariablesTest {
         scString2 = new ScString(string2);
         sStr1 = "string1";
         sStr2 = "string2";
-        cs1 = c.variable(sStr1, string1);
-        cs2 = c.variable(sStr2, string2);
+        cs1 = v.variable(sStr1, string1);
+        cs2 = v.variable(sStr2, string2);
     }
 
     @RepeatedTest(100)
@@ -104,11 +105,11 @@ public class VariablesTest {
         var expected2 = c.cNum(num2);
         assertEquals(expected1, cn1);
         assertEquals(expected2, cn2);
-        var expected3 = c.variable(sNum1);
-        var expected4 = c.variable(sNum2);
+        var expected3 = v.variable(sNum1);
+        var expected4 = v.variable(sNum2);
         assertEquals(expected3, cn1);
         assertEquals(expected4, cn2);
-        cn1 = c.variable(sNum1, num2);
+        cn1 = v.variable(sNum1, num2);
         assertEquals(cn1, cn2);
     }
 
@@ -118,11 +119,11 @@ public class VariablesTest {
         var expected2 = c.cNum(float2);
         assertEquals(expected1, cf1);
         assertEquals(expected2, cf2);
-        var expected3 = c.variable(sFl1);
-        var expected4 = c.variable(sFl2);
+        var expected3 = v.variable(sFl1);
+        var expected4 = v.variable(sFl2);
         assertEquals(expected3, cf1);
         assertEquals(expected4, cf2);
-        cf1 = c.variable(sFl1, float2);
+        cf1 = v.variable(sFl1, float2);
         assertEquals(cf1, cf2);
     }
 
@@ -132,11 +133,11 @@ public class VariablesTest {
         var expected2 = c.cNum(binary2);
         assertEquals(expected1, cBin1);
         assertEquals(expected2, cBin2);
-        var expected3 = c.variable(sBin1);
-        var expected4 = c.variable(sBin2);
+        var expected3 = v.variable(sBin1);
+        var expected4 = v.variable(sBin2);
         assertEquals(expected3, cBin1);
         assertEquals(expected4, cBin2);
-        cBin1 = c.variable(sBin1, binary2);
+        cBin1 = v.variable(sBin1, binary2);
         assertEquals(cBin1, cBin2);
     }
 
@@ -146,11 +147,11 @@ public class VariablesTest {
         var expected2 = c.cStr(string2);
         assertEquals(expected1, cs1);
         assertEquals(expected2, cs2);
-        var expected3 = c.variable(sStr1);
-        var expected4 = c.variable(sStr2);
+        var expected3 = v.variable(sStr1);
+        var expected4 = v.variable(sStr2);
         assertEquals(expected3, cs1);
         assertEquals(expected4, cs2);
-        cs1 = c.variable(sStr1, string2);
+        cs1 = v.variable(sStr1, string2);
         assertEquals(cs1, cs2);
     }
 
@@ -160,11 +161,11 @@ public class VariablesTest {
         var expected2 = c.cLog(bool2);
         assertEquals(expected1, cBool1);
         assertEquals(expected2, cBool2);
-        var expected3 = c.variable(sBool1);
-        var expected4 = c.variable(sBool2);
+        var expected3 = v.variable(sBool1);
+        var expected4 = v.variable(sBool2);
         assertEquals(expected3, cBool1);
         assertEquals(expected4, cBool2);
-        cBool1 = c.variable(sBool1, bool2);
+        cBool1 = v.variable(sBool1, bool2);
         assertEquals(cBool1, cBool2);
     }
 

@@ -6,6 +6,7 @@ import files.operations.constant.ConstantLogical;
 import files.operations.constant.ConstantNum;
 import files.operations.ops.Operations;
 import files.types.numbers.ScNumber;
+import files.visitor.Visitor;
 
 import java.util.Objects;
 
@@ -18,26 +19,28 @@ public class Mul extends NumOps{
     Ops val2;
 
     /**
+     * @return left and right operator
+     */
+    public Ops[] getValue() {
+        Ops[] list = new Ops[2];
+        list[0] = val1;
+        list[1] = val2;
+        return list;
+    }
+
+    /**
+     * @return string with class name
+     */
+    public String getName() {
+        return "Mul";
+    }
+
+    /**
      * Class Constructors
      * @param val1 -> Constant or Operation
      * @param val2 -> Constant or Operation
      */
-    public Mul(Constant val1, Constant val2) {
-        this.val1 = val1;
-        this.val2 = val2;
-    }
-
-    public Mul(Constant val1, Operations val2) {
-        this.val1 = val1;
-        this.val2 = val2;
-    }
-
-    public Mul(Operations val1, Constant val2) {
-        this.val1 = val1;
-        this.val2 = val2;
-    }
-
-    public Mul(Operations val1, Operations val2) {
+    public Mul(Ops val1, Ops val2) {
         this.val1 = val1;
         this.val2 = val2;
     }
@@ -76,5 +79,15 @@ public class Mul extends NumOps{
         ScNumber v1 = (ScNumber) num1.getValue();
         ScNumber v2 = (ScNumber) num2.getValue();
         return new ConstantNum(v1.mul(v2));
+    }
+
+    /**
+     * Visitor
+     */
+    @Override
+    public void accept(Visitor visitor) {
+        val1.accept(visitor);
+        val2.accept(visitor);
+        visitor.visitOperation(this);
     }
 }

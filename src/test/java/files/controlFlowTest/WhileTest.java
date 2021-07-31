@@ -1,17 +1,13 @@
 package files.controlFlowTest;
 
-import files.controlFlow.CompareTo;
 import files.controlFlow.While;
-import files.controlFlow.While2;
-import files.controlFlow.While3;
 import files.operations.Ops;
 import files.operations.constant.Constant;
 import files.operations.constant.ConstantFactory;
-import files.operations.constant.ConstantNum;
+import files.operations.constant.VariableFactory;
 import files.operations.ops.NumOps.Add;
 import files.operations.ops.NumOps.Mul;
 import files.operations.ops.Operations;
-import files.types.ScType;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
@@ -20,6 +16,7 @@ import java.util.function.Supplier;
 
 public class WhileTest {
     ConstantFactory c = new ConstantFactory();
+    VariableFactory v = new VariableFactory();
 
     /*@Test
     void whileTest1() {
@@ -124,6 +121,7 @@ public class WhileTest {
     */
 
 
+    /*
     @Test
     void noseTest() {
         c.variable("a", 0);
@@ -182,6 +180,16 @@ public class WhileTest {
         System.out.println(supplierxd.get().eval());
         System.out.println(supplierxd.get().eval());
     }
+*/
 
+    @Test
+    public void otroTest() {
+        Constant a = v.variable("a", 1);
+        System.out.println(v.variable("a"));
+        Operations op = v.variable("a", new Add((Constant) v.variable("a"), c.cNum(1)));
+        System.out.println(op.eval());
+        new While(true, v.variable("a", new Add((Constant) v.variable("a"), c.cNum(1)))).eval2();
+        System.out.println(v.variable("a"));
+    }
 
 }

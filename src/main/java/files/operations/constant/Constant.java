@@ -9,4 +9,5 @@ import files.types.ScType;
 public interface Constant extends Ops {
 
     public ScType getValue();
+    public String getName();
 }

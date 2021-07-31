@@ -5,8 +5,10 @@ import files.operations.constant.Constant;
 import files.operations.constant.ConstantLogical;
 import files.operations.ops.Operations;
 import files.types.ScBoolean;
+import files.visitor.Visitor;
+import files.visitor.VisitorOperator;
 
-public class While implements Control {
+public class While {
     ConstantLogical condition;
     Ops whileTrue;
 
@@ -23,7 +25,7 @@ public class While implements Control {
 
 
 
-    @Override
+    //@Override
     public Ops eval() {
         ScBoolean scBoolean = (ScBoolean) condition.getValue();
         boolean aBool = scBoolean.getValue();
@@ -41,13 +43,26 @@ public class While implements Control {
         }
     }
 
-    public Ops val() {
-        int i=0;
-        while (i<5) {
-            i++;
-            System.out.println(whileTrue.eval());
+    public void eval2() {
+        for (int i=0;i<5;i++) {
+            whileTrue.eval();
         }
-        return whileTrue;
     }
+
+    /*@Override
+    public void accept(Visitor visitor) {
+
+    }
+*/
+
+    /*
+    public Ops val() {
+        VisitorOperator v = new VisitorOperator();
+        whileTrue.accept(v);
+        for(int i=0;i<5;i++) {
+            v.result();
+        }
+        return v.result();
+    }*/
 
 }

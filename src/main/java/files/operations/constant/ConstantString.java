@@ -1,6 +1,7 @@
 package files.operations.constant;
 
 import files.types.ScString;
+import files.visitor.Visitor;
 
 import java.util.Objects;
 
@@ -10,9 +11,11 @@ import java.util.Objects;
 
 public class ConstantString implements Constant {
     ScString value;
+    String name;
 
     public ConstantString(ScString val1) {
         this.value = val1;
+        this.name = val1.toString() + "cStr";
     }
 
     /**
@@ -21,6 +24,14 @@ public class ConstantString implements Constant {
     @Override
     public ScString getValue() {
         return this.value;
+    }
+
+    /**
+     * @return String name
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -52,5 +63,12 @@ public class ConstantString implements Constant {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Visitor module
+     */
+    public void accept(Visitor visitor) {
+        visitor.visitConstant(this);
     }
 }

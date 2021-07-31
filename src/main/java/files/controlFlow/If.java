@@ -5,6 +5,7 @@ import files.operations.constant.Constant;
 import files.operations.constant.ConstantLogical;
 import files.operations.ops.Operations;
 import files.types.ScBoolean;
+import files.visitor.Visitor;
 
 /**
  * @author jaedango
@@ -28,6 +29,13 @@ public class If implements Control {
     }
 
     /**
+     * @return string with class name
+     */
+    public String getName() {
+        return "If";
+    }
+
+    /**
      * @return left argument if true, right argument if false
      */
     @Override
@@ -39,5 +47,10 @@ public class If implements Control {
         } else {
             return ifFalse.eval();
         }
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+
     }
 }

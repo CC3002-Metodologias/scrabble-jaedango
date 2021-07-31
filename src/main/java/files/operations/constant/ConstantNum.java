@@ -2,6 +2,7 @@ package files.operations.constant;
 
 import files.types.ScType;
 import files.types.numbers.ScNumber;
+import files.visitor.Visitor;
 
 import java.util.Objects;
 
@@ -11,9 +12,16 @@ import java.util.Objects;
 
 public class ConstantNum implements Constant {
     ScNumber value;
+    String name;
 
     public ConstantNum(ScNumber val) {
         this.value = val;
+        this.name = val.toString() + "cNum";
+    }
+
+    public ConstantNum(ScNumber val, String name) {
+        this.value = val;
+        this.name = name;
     }
 
     /**
@@ -22,6 +30,14 @@ public class ConstantNum implements Constant {
     @Override
     public ScType getValue() {
         return this.value;
+    }
+
+    /**
+     * @return String name
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -54,5 +70,12 @@ public class ConstantNum implements Constant {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Visitor module
+     */
+    public void accept(Visitor visitor) {
+        visitor.visitConstant(this);
     }
 }

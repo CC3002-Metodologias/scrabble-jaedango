@@ -9,4 +9,5 @@ import files.operations.constant.Constant;
 
 public interface Operations extends Ops {
     public Constant eval();
+    public Ops[] getValue();
 }
