@@ -5,6 +5,9 @@ import files.types.numbers.ScFloat;
 import files.types.numbers.ScInt;
 import files.types.numbers.ScNumber;
 
+/**
+ * @author jaedango
+ */
 
 public class CompareTo {
     ConstantNum val1;

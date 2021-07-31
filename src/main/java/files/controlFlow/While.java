@@ -6,6 +6,10 @@ import files.operations.constant.ConstantLogical;
 import files.operations.ops.Operations;
 import files.types.ScBoolean;
 
+/**
+ * Not Functional
+ */
+
 public class While implements Control {
     Constant condition;
     Operations whileTrue;

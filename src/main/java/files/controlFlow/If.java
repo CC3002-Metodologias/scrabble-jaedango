@@ -1,10 +1,13 @@
 package files.controlFlow;
 
 import files.operations.Ops;
-import files.operations.constant.Constant;
 import files.operations.constant.ConstantLogical;
 import files.operations.ops.Operations;
 import files.types.ScBoolean;
+
+/**
+ * @author jaedango
+ */
 
 public class If implements Control {
     ConstantLogical condition;
